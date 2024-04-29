@@ -1,0 +1,99 @@
+@import "reset.css";
+
+/* 회원가입 */
+.member-insertForm-container {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+    width : 100%;
+    height : calc(100vh - 110px);
+}
+
+.member-insertForm-inner-container {
+    width : 70vw;
+    height : 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-top-container {
+    height : 10%;
+    font-size: 28px;
+    color :#5F95FF;
+}
+
+.member-input-container {
+    width : 50%;
+    height : 80%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.member-input-div {
+    display: flex;
+    align-items: center;
+}
+
+.member-label {
+    width: 25%;
+    font-size: 17px;
+}
+
+.member-input {
+    width : 60%;
+    margin-right: 10px;
+}
+
+.member-input > input {
+    font-size : 18px;
+    width : 100%;
+    padding : 5px 10px;
+    border : 1px solid #EEEEEE;
+}
+
+.member-input > input:focus {
+    outline: none;
+}
+
+.member-duplicatedId {
+    width : 10%;
+    cursor: pointer;
+}
+.member-duplicatedId > input {
+    font-size : 17px;
+    color: #5F95FF;
+    padding : 10px 20px;
+    border : 1px solid #5F95FF;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.member-duplicatedId> input:hover {
+    background-color: #f3f3f3;
+}
+
+.member-insertForm-btn-container {
+    width : 30%;
+    cursor: pointer;
+    background-color: #5F95FF;
+    display: flex;
+    justify-content: center;
+    border-radius : 50px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 25%);
+    margin : 10px 0;
+}
+
+
+.member-insertForm-btn {
+    border : none;
+    cursor: pointer;
+    background-color: #5F95FF;
+    color : white;
+    font-size: 23px;
+    padding : 15px 10px;
+}

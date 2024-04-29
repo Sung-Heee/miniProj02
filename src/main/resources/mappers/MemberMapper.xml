@@ -45,4 +45,31 @@
             , member_account_locked = 'N'
         where member_email = #{member_email}
     </update>
+
+<!--    회원가입-->
+    <insert id="insert">
+        INSERT INTO tb_member (
+            member_email,
+            member_pwd,
+            member_name,
+            member_nickname,
+            member_address,
+            member_phone,
+            member_gender,
+            member_roles,
+            member_account_expired,
+            member_account_locked
+        ) VALUES (
+                     #{member_email},
+                     #{member_pwd},
+                     #{member_name},
+                     #{member_nickname},
+                     #{member_address},
+                     #{member_phone},
+                     #{member_gender},
+                     #{member_roles},
+                     #{member_account_expired},
+                     #{member_account_locked}
+                 )
+    </insert>
 </mapper>

@@ -35,4 +35,8 @@ public class MemberService implements UserDetailsService {
 
         return resultVO;
     }
+
+    public int insert(MemberVO memberVO) {
+        return memberMapper.insert(memberVO);
+    }
 }

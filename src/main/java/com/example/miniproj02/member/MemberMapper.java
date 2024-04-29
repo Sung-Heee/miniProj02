@@ -17,4 +17,5 @@ public interface MemberMapper {
     // 로그인 성공하면 비밀번호 틀린 횟수 초기화
     void loginCountClear(String email);
 
+    int insert(MemberVO memberVO);
 }

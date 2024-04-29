@@ -19,6 +19,7 @@
         <div class="btn-container">
         </div>
     </div>
+    <a href="/login/loginForm">로그인</a>
 </div>
 
 </body>

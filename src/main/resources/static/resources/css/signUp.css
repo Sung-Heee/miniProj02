@@ -5,9 +5,7 @@
     display : flex;
     justify-content: center;
     align-items: center;
-    margin-top: 110px;
-    width : 100%;
-    height : calc(100vh - 110px);
+    height: calc(100vh - 100px);
 }
 
 .member-insertForm-inner-container {
@@ -59,6 +57,14 @@
     outline: none;
 }
 
+label {
+    margin-right: 15px;
+}
+
+.input-radio {
+    margin-right: 5px;
+}
+
 .member-duplicatedId {
     width : 10%;
     cursor: pointer;
@@ -74,26 +80,22 @@
 }
 
 .member-duplicatedId> input:hover {
-    background-color: #f3f3f3;
+    background-color: #F8F8F8;
 }
-
-.member-insertForm-btn-container {
-    width : 30%;
-    cursor: pointer;
-    background-color: #5F95FF;
-    display: flex;
-    justify-content: center;
-    border-radius : 50px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 25%);
-    margin : 10px 0;
-}
-
 
 .member-insertForm-btn {
-    border : none;
+    width: 30%;
+    border-radius: 50px;
+    border: none;
     cursor: pointer;
     background-color: #5F95FF;
-    color : white;
-    font-size: 23px;
-    padding : 15px 10px;
+    color: white;
+    font-size: 20px;
+    padding: 13px 10px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 25%);
+    margin: 15px 0;
+}
+
+.member-insertForm-btn:hover {
+    background-color: #4681F3;
 }

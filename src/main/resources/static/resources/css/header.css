@@ -1,0 +1,61 @@
+@import "reset.css";
+
+/* 헤더 스타일 */
+.header-container {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.logo-container {
+    flex: 1;
+}
+
+.logo {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.menu-container {
+    flex: 4;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽으로 정렬 */
+}
+
+.menu-btn {
+    text-decoration: none;
+    color: #6E6E6E;
+    font-weight: 500;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.menu-btn:hover{
+    color: #5F95FF;
+}
+
+.sign-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽으로 정렬 */
+    align-items: center;
+}
+
+.square-btn {
+    text-decoration: none;
+    background-color: #FFF;
+    padding: 10px 40px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: #5F95FF;
+    border: 1px solid #5F95FF;
+    font-weight: 500;
+}
+
+.square-btn:hover {
+    background-color: #F8F8F8;
+}

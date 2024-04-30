@@ -1,0 +1,40 @@
+@import "reset.css";
+
+.main-content {
+    padding: 30px;
+    background-color: #F7FAFF;
+    display: flex;
+    align-items: center;
+}
+
+.main-content h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    color : #5F95FF;
+}
+.main-content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.main-content img {
+    max-width: 100%;
+    height: 400px;
+    margin-left: auto; /* 이미지를 오른쪽으로 정렬 */
+    margin-right: 20px; /* 오른쪽 여백 설정 */
+}
+.main-content .btn-container {
+    margin-top: 20px;
+}
+.main-content .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color:  #5F95FF;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+}
+.main-content .btn:hover {
+    background-color: #4681F3;
+}

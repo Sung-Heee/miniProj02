@@ -5,9 +5,7 @@
   display : flex;
   justify-content: center;
   align-items: center;
-  margin-top: 110px;
-  width : 100%;
-  height : calc(100vh - 110px);
+  height: calc(100vh - 200px);
 }
 
 .login-inner-container {
@@ -69,26 +67,36 @@
   justify-content: center;
 }
 
-.login-btn-div {
-  height: 40%;
-  width : 35%;
-  background-color: #5F95FF;
-  display : flex;
-  justify-content: center;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 2px 4px 10px rgba(0, 0, 0, 25%);
-  margin: 20px 0;
-}
+/*.login-btn-div {*/
+/*  height: 40%;*/
+/*  width : 35%;*/
+/*  background-color: #5F95FF;*/
+/*  display : flex;*/
+/*  justify-content: center;*/
+/*  border-radius: 50px;*/
+/*  cursor: pointer;*/
+/*  box-shadow: 2px 4px 10px rgba(0, 0, 0, 25%);*/
+/*  margin: 20px 0;*/
+/*}*/
 
 .login-btn {
   background-color: #5F95FF;
   border: none;
   font-size: 25px;
-  color : white;
+  color: white;
   cursor: pointer;
+  width: 35%;
+  height: 40%;
+  border-radius: 50px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 25%);
+  margin: 20px 0;
+}
+
+.login-btn:hover {
+  background-color: #4681F3;
 }
 
 .login-signup-a {
   color : #5F95FF;
+  text-decoration: underline;
 }

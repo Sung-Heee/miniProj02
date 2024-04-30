@@ -16,7 +16,7 @@ public class MemberService implements UserDetailsService {
     private MemberMapper memberMapper;
 
     public static void main(String[] args) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
     @Override
@@ -37,6 +37,11 @@ public class MemberService implements UserDetailsService {
     }
 
     public int insert(MemberVO memberVO) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        String password = bCryptPasswordEncoder.encode(memberVO.getPassword());
+        memberVO.setMember_pwd(password);
+
         return memberMapper.insert(memberVO);
     }
 }

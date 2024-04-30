@@ -15,8 +15,10 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/signUp.css">
 </head>
 <body>
+<%@ include file="/WEB-INF/views/include/meta.jsp" %>
+
 <div class="member-insertForm-container">
-    <form id="insertForm" action="/login/signUp" method="post">
+    <form id="insertForm" action="insert" method="post">
         <div class="member-insertForm-inner-container">
             <div class="member-top-container"><h1>Sign Up</h1></div>
             <div class="member-input-container">
@@ -40,7 +42,7 @@
                 <div class="member-input-div">
                     <div class="member-label">비밀번호 확인</div>
                     <div class="member-input">
-                        <input type="password" id="UserPasswordCheck" name="member_pwd_check" required>
+                        <input type="password" id="UserPasswordCheck"  required>
                     </div>
                 </div>
 
@@ -106,8 +108,6 @@
     insertForm.addEventListener("submit", e => {
         e.preventDefault();
 
-        console.log("userPassword" + userPassword);
-
         // if (validUserEmail === "" || userEmail.value !== validUserEmail) {
         //     alert("이메일 중복확인을 해주세요.");
         //     return false;
@@ -122,8 +122,8 @@
         //     return false;
         // }
 
-        myFetch("/insert", "insertForm", json => {
-            if (json.status == 0) {
+        myFetch("insert", "insertForm", json => {
+            if (json.status === 0) {
                 alert(json.statusMessage);
                 location="/";
             } else  {

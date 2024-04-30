@@ -9,6 +9,7 @@
     <title>Main</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/include/meta.jsp" %>
 
 <div class="main-content">
     <div>

@@ -2,16 +2,18 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <title>LoginForm</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/loginForm.css">
+    <%@ include file="/WEB-INF/views/include/meta.jsp" %>
 
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/meta.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 <div class="login-container">
     <form action="/login" method="post" >
@@ -34,9 +36,7 @@
 
             </div>
             <div class="login-btn-container">
-                <div class="login-btn-div">
-                    <input type="submit" value="Login" class="login-btn">
-                </div>
+                <input type="submit" value="Login" class="login-btn">
                 <div class="login-signup">
                     계정이 없으신가요? <a href="<c:url value='/login/signUp'/>" class="login-signup-a">회원가입</a>
                 </div>

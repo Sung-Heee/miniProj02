@@ -1,21 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hee
-  Date: 4/29/24
-  Time: 3:06 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/signUp.css">
+
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/meta.jsp" %>
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
 
 <div class="member-insertForm-container">
     <form id="insertForm" action="insert" method="post">
@@ -90,9 +86,9 @@
 <%--                    </c:forEach>--%>
 <%--                </div>--%>
             </div>
-            <div class="member-insertForm-btn-container">
-                <input type="submit" value="회원가입" class="member-insertForm-btn">
-            </div>
+
+            <input type="submit" value="회원가입" class="member-insertForm-btn">
+
         </div>
     </form>
 </div>

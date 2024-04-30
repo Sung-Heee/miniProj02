@@ -1,0 +1,214 @@
+@import "reset.css";
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.list-inner-container {
+    width: 70vw;
+    padding: 100px 0 50px 0;
+    height: auto;
+}
+
+.list-top-menu {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width : 100%;
+    height : 10%;
+
+}
+
+.insert-container {
+    border-radius: 30px;
+    background-color: #5F95FF;
+    padding : 15px 20px;
+    font-size : 18px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.insert-container:hover {
+    background-color: #4681F3;
+}
+
+.insert-btn {
+    color: white;
+}
+
+.select-searchbar-container {
+    display: flex;
+    width: 30%;
+}
+
+
+.select-container {
+    margin-right: 10px;
+}
+
+select {
+    border: 1px solid #AFAFAF;
+    height: 100%;
+    color: #4D4D4D;
+}
+
+
+.searchbar-container {
+    width : 100%;
+    border: 1px solid #AFAFAF;
+}
+
+.searchbar {
+    width : 100%;
+    display : flex;
+    padding : 10px;
+    justify-content: space-between;
+}
+
+.searchbar-input {
+    font-size: 18px;
+    width : 85%;
+    border : none;
+}
+
+.searchbar-input:focus {
+    outline:none;
+}
+
+.searchbar-a {
+    font-size: 18px;
+    color : black;
+    cursor : pointer;
+    display : flex;
+    justify-content: flex-end;
+    width : 15%;
+    background-color: transparent;
+    border: none;
+}
+
+.searchbar-a:hover {
+    color : #5F95FF;
+}
+
+.list {
+    width: 100%;
+    height : 90%;
+    /* background-color: red; */
+}
+
+
+.list-content, .list-top-content {
+    display : flex;
+    align-items: center;
+    height : 80px;
+    border-bottom : 1px solid #D7D7D7;
+}
+
+.list-content {
+    font-size : 17px;
+}
+
+.list-top-content {
+    font-size: 20px;
+    border-bottom : 2px solid black;
+}
+
+.no-area {
+    width : 10%;
+    display : flex;
+    justify-content: center;
+}
+.writer-area, .date-area {
+    width : 20%;
+    display : flex;
+    justify-content: center;
+}
+
+.title-area {
+    width: 40%;
+    display : flex;
+    justify-content: center;
+}
+
+.admin-delete-btn {
+    width : 10%;
+    display : flex;
+    justify-content: center;
+
+}
+
+.admin-delete-btn > a {
+    color : #5F95FF;
+}
+
+.title-a {
+    color : black;
+}
+
+.title-a:hover {
+    color : #5F95FF;
+}
+
+/*페이지네이션*/
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.page-item {
+    display: inline;
+}
+
+.page-link {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    color: #5F95FF;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    margin-left: -1px;
+}
+
+.page-link:hover {
+    color: #4681F3;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.page-link:not(:disabled) {
+    cursor: pointer;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #5F95FF;
+    border-color: #5F95FF;
+}
+
+.page-link[data-num] {
+    cursor: pointer;
+}

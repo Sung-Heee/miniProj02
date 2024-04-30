@@ -11,25 +11,27 @@
 
 </head>
 <body>
+<%@ include file="/WEB-INF/views/include/meta.jsp" %>
 
 <div class="login-container">
+    <form action="/login" method="post" >
         <div class="login-inner-container">
             <div class="login-top-container"><h1>Login</h1></div>
             <div class="login-input-container">
-                <form action="/login" method="post" >
+
                     <sec:csrfInput/>
                     <div class="login-id">
-                        <input type="email" class="login-id-input" name="email" required="required" placeholder="id">
+                        <input type="email" class="login-id-input" name="member_email" required="required" placeholder="id">
                     </div>
                     <div class="login-password">
-                        <input type="password" class="login-password-input" name="password" required="required" placeholder="password">
+                        <input type="password" class="login-password-input" name="member_password" required="required" placeholder="password">
                     </div>
                     <div class="login-autologin-container">
                         <div class="login-autologin">
                             <label for="autologin">자동로그인</label> <input type="checkbox" id="autologin" name="autologin" value="Y">
                         </div>
                     </div>
-                </form>
+
             </div>
             <div class="login-btn-container">
                 <div class="login-btn-div">
@@ -41,7 +43,7 @@
                 <!-- <a href="member.do?action=list" class="btn">취소</a> -->
             </div>
         </div>
-
+    </form>
 </div>
 
 <script>

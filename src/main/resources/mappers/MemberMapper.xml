@@ -5,7 +5,7 @@
 <mapper namespace="com.example.miniproj02.member.MemberMapper">
 
 <!--    로그인 성공시 데이터 가져오기-->
-    <select id="login" resultType="com.example.miniproj02.entity.MemberVO">
+    <select id="login" resultType="MemberVO">
         select
             *
         from tb_member
@@ -25,7 +25,7 @@
     <update id="loginCountInc">
         update tb_member
         set
-            member_login_count += 1
+            member_login_count = member_login_count + 1
         <choose>
             <when test="member_login_count > 5">
                 , member_account_locked = 'Y'
@@ -55,10 +55,7 @@
             member_nickname,
             member_address,
             member_phone,
-            member_gender,
-            member_roles,
-            member_account_expired,
-            member_account_locked
+            member_gender
         ) VALUES (
                      #{member_email},
                      #{member_pwd},
@@ -66,10 +63,7 @@
                      #{member_nickname},
                      #{member_address},
                      #{member_phone},
-                     #{member_gender},
-                     #{member_roles},
-                     #{member_account_expired},
-                     #{member_account_locked}
+                     #{member_gender}
                  )
     </insert>
 </mapper>

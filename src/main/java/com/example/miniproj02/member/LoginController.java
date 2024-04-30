@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,15 @@ public class LoginController {
                              @RequestParam(value = "exception", required = false) String exception) {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 
     @RequestMapping("signUp")

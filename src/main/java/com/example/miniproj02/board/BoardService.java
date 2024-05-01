@@ -5,6 +5,7 @@ import com.example.miniproj02.page.PageRequestVO;
 import com.example.miniproj02.page.PageResponseVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +29,14 @@ public class BoardService {
                 .build();
 
         return pageResponseVO;
+    }
+
+    public int insert(BoardVO boardVO) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        String password = bCryptPasswordEncoder.encode(boardVO.getBoard_pwd());
+        boardVO.setBoard_pwd(password);
+
+        return boardMapper.insert(boardVO);
     }
 }

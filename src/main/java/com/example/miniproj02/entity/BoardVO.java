@@ -14,9 +14,10 @@ public class BoardVO {
     private String board_id;
     private String board_title;
     private String board_content;
-    private String member_id;
+    private String member_email;
     private String board_date;
     private String view_count;
+    private String board_pwd;
     private String board_writer;
     //게시물 토큰 변수 선언
 //    private String board_token;

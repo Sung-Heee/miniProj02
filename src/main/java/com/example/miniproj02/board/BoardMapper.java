@@ -16,4 +16,7 @@ public interface BoardMapper {
 
     BoardVO detail(BoardVO boardVO);
 
+    int update(BoardVO boardVO);
+
+    int delete(BoardVO boardVO);
 }

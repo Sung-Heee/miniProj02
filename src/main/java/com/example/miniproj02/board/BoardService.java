@@ -54,4 +54,11 @@ public class BoardService {
         return bCryptPasswordEncoder.matches(boardVO.getInput_pwd(), resultVO.getBoard_pwd());
     }
 
+    public int update(BoardVO boardVO) {
+        return boardMapper.update(boardVO);
+    }
+
+    public int delete(BoardVO boardVO) {
+        return boardMapper.delete(boardVO);
+    }
 }

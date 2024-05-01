@@ -80,41 +80,61 @@
             <%--                </c:when>--%>
             <%--            </c:choose>--%>
 
-            <div class="detail-btn-container">
-                <a id="modify-btn" class="modify-btn">수정</a>
 
-            <%--                <a href="updateForm?board_id=${board.board_id}" id="modify-btn" class="modify-btn">수정</a>--%>
+            <div class="detail-btn-container">
+                <input placeholder="비밀번호" type="password" id="password" class="password-input">
+                <a href="javascript:jsUpdate()" id="modify-btn" class="modify-btn">수정</a>
                 <a href="javascript:jsDelete()" class="delete-btn">삭제</a>
             </div>
         </div>
     </div>
 </div>
 
-<form id="detailForm" name="detailForm" method="post" action="board.do">
-    <input type="hidden" id="action" name="action" value="">
-    <input type="hidden" name="bno" value="${board.board_id}">
+<form id="detailForm" method="post" action="delete">
+    <input type="hidden" name="board_id" value="${board.board_id}">
 </form>
 
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
-const modifyBtn = document.getElementById("modify-btn");
+const password = document.getElementById("password");
 
-modifyBtn.addEventListener("click", e => {
-    let password = prompt("비밀번호를 입력해주세요.")
-
-    if(password) {
-        myFetch("checkPwd", {board_id : ${board.board_id}, input_pwd : password}, json => {
-            if (json.status == 0) {
-                alert("비밀번호 맞음")
-                //진짜수정하러감
+function jsUpdate() {
+    if (password.value !== "") {
+        myFetch("checkPwd", {board_id : ${board.board_id}, input_pwd : password.value}, json => {
+            if (json.status === 0) {
                 // 비밀번호가 맞을 때 수정 페이지로 이동
-                <%--window.location.href = "/updateForm?board_id=${board.board_id}";--%>
+                location.href = "updateForm?board_id=${board.board_id}";
             } else {
                 alert(json.statusMessage);
             }
         });
+    } else {
+        alert("설정한 비밀번호를 입력해주세요.");
+        password.style.border = '2px solid red';
     }
-})
+}
+
+function jsDelete() {
+    if (password.value !== "") {
+        myFetch("checkPwd", {board_id : ${board.board_id}, input_pwd : password.value}, json => {
+            if (json.status === 0) {
+                myFetch("delete", "detailForm", json => {
+                    if (json.status === 0) {
+                        alert(json.statusMessage);
+                        location = "list";
+                    } else {
+                        alert(json.statusMessage);
+                    }
+                });
+            } else {
+                alert(json.statusMessage);
+            }
+        });
+    } else {
+        alert("설정한 비밀번호를 입력해주세요.");
+        password.style.border = '2px solid red';
+    }
+}
 </script>
 
 </body>

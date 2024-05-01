@@ -7,7 +7,7 @@
     <select id="getList" resultType="BoardVO">
         select
             b.*, m.member_nickname board_writer
-        from tb_board b inner join tb_member m on b.member_id = m.member_id
+        from tb_board b inner join tb_member m on b.member_email = m.member_email
         order by board_id desc limit #{skip}, #{size}
     </select>
 
@@ -20,7 +20,15 @@
     <select id="view" resultType="BoardVO">
         select
             b.*, m.member_nickname board_writer
-        from tb_board b inner join tb_member m on b.member_id = m.member_id
+        from tb_board b inner join tb_member m on b.member_email = m.member_email
         where board_id = #{board_id}
     </select>
+
+    <!-- 글 등록 -->
+    <insert id="insert">
+        insert into
+            tb_board
+        (board_title, board_content, member_email, board_date, board_pwd)
+        values (#{board_title}, #{board_content}, #{member_email}, NOW(), #{board_pwd})
+    </insert>
 </mapper>

@@ -5,6 +5,7 @@ import com.example.miniproj02.entity.BoardVO;
 import com.example.miniproj02.page.PageRequestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -66,5 +67,31 @@ public class BoardController {
         }
 
         return map;
+    }
+
+    @RequestMapping("detail")
+    public String detail(Model model, BoardVO boardVO) {
+        model.addAttribute("board", boardService.detail(boardVO));
+        return "board/detail";
+    }
+
+    @RequestMapping("checkPwd")
+    @ResponseBody
+    public Map<String, Object> checkPwd(@RequestBody BoardVO boardVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        if (boardService.checkPwd(boardVO)) {
+            map.put("status", 0);
+        } else {
+            map.put("status", -1);
+            map.put("statusMessage", "비밀번호가 틀렸습니다.");
+        }
+
+        return map;
+    }
+
+    @RequestMapping("updateForm")
+    public String updateForm() {
+        return "board/updateForm";
     }
 }

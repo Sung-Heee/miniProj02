@@ -5,6 +5,7 @@ import com.example.miniproj02.page.PageRequestVO;
 import com.example.miniproj02.page.PageResponseVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ import java.util.List;
 public class BoardService {
 
     private final BoardMapper boardMapper;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public PageResponseVO<BoardVO> getList(PageRequestVO pageRequestVO) {
         List<BoardVO> list = boardMapper.getList(pageRequestVO);
@@ -39,4 +43,15 @@ public class BoardService {
 
         return boardMapper.insert(boardVO);
     }
+
+    public BoardVO detail(BoardVO boardVO) {
+        BoardVO resultVO = boardMapper.detail(boardVO);
+        return resultVO;
+    }
+
+    public boolean checkPwd(BoardVO boardVO) {
+        BoardVO resultVO = boardMapper.detail(boardVO);
+        return bCryptPasswordEncoder.matches(boardVO.getInput_pwd(), resultVO.getBoard_pwd());
+    }
+
 }

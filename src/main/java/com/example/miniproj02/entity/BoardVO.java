@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
@@ -27,4 +28,6 @@ public class BoardVO {
 
     //첨부파일
 //    private BoardFileVO boardFileVO;
+    private String input_pwd;
+
 }

@@ -76,7 +76,7 @@
                 <c:forEach var="board" items="${pageResponseVO.list}">
                     <div class="list-content">
                         <div class="no-area">${board.board_id}</div>
-                        <div class="title-area"><a href="detail?bno=${board.board_id}" class="title-a">${board.board_title}</a></div>
+                        <div class="title-area"><a href="detail?board_id=${board.board_id}" class="title-a">${board.board_title}</a></div>
                         <div class="writer-area">${board.board_writer}</div>
                         <div class="date-area">${board.board_date}</div>
 <%--                        <c:if test="${loginVO.user_id eq 'admin'}">--%>

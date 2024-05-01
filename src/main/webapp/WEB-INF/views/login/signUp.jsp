@@ -7,7 +7,7 @@
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/signUp.css">
-
+    <%@ include file="/WEB-INF/views/include/meta.jsp" %>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>

@@ -44,4 +44,15 @@ public class MemberService implements UserDetailsService {
 
         return memberMapper.insert(memberVO);
     }
+
+    public boolean checkMemberPwd(MemberVO memberVO) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        MemberVO resultVO = memberMapper.getPwd(memberVO);
+        return bCryptPasswordEncoder.matches(memberVO.getInput_pwd(), resultVO.getMember_pwd());
+    }
+
+    public int update(MemberVO memberVO) {
+        return memberMapper.update(memberVO);
+    }
 }

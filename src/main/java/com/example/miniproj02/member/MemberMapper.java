@@ -18,4 +18,8 @@ public interface MemberMapper {
     void loginCountClear(String email);
 
     int insert(MemberVO memberVO);
+
+    MemberVO getPwd(MemberVO memberVO);
+
+    int update(MemberVO memberVO);
 }

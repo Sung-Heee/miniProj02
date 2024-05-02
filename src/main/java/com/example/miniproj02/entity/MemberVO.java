@@ -34,6 +34,8 @@ public class MemberVO implements UserDetails {
     private int    member_login_count;
     private LocalDateTime member_last_login_time;
 
+    private String input_pwd;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collections = new ArrayList<GrantedAuthority>();

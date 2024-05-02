@@ -15,8 +15,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class BoardService {
-
-    private final BoardMapper boardMapper;
+    @Autowired
+    BoardMapper boardMapper;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -36,7 +36,6 @@ public class BoardService {
     }
 
     public int insert(BoardVO boardVO) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
         String password = bCryptPasswordEncoder.encode(boardVO.getBoard_pwd());
         boardVO.setBoard_pwd(password);

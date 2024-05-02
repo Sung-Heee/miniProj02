@@ -40,5 +40,16 @@
         where board_id = #{board_id}
     </select>
 
+    <!-- 글 수정 -->
+    <update id="update">
+        update tb_board
+        set board_title = #{board_title}, board_content = #{board_content}
+        where board_id = #{board_id}
+    </update>
 
+    <!-- 글 삭제 -->
+    <delete id="delete">
+        delete from tb_board
+        where board_id = #{board_id}
+    </delete>
 </mapper>

@@ -107,6 +107,7 @@
     display : flex;
     width : 30%;
     padding: 10px 0;
+    border: none;
     color : white;
     background-color: #5F95FF;
 }

@@ -91,7 +91,46 @@ public class BoardController {
     }
 
     @RequestMapping("updateForm")
-    public String updateForm() {
+    public String updateForm(Model model, BoardVO boardVO) {
+        model.addAttribute("board", boardService.detail(boardVO));
         return "board/updateForm";
     }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public Map<String, Object> update(@RequestBody BoardVO boardVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        int updated = boardService.update(boardVO);
+
+        System.out.println("updated = " + updated);
+        
+        if (updated == 1) {
+            map.put("status", 0);
+            map.put("statusMessage", "수정되었습니다.");
+        } else {
+            map.put("status", -1);
+            map.put("statusMessage", "수정에 실패하였습니다.");
+        }
+        return map;
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public Map<String, Object> delete(@RequestBody BoardVO boardVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        int updated = boardService.delete(boardVO);
+
+        if (updated == 1) {
+            map.put("status", 0);
+            map.put("statusMessage", "삭제되었습니다.");
+        } else {
+            map.put("status", -1);
+            map.put("statusMessage", "삭제에 실패하였습니다.");
+        }
+
+        return map;
+    }
+
 }

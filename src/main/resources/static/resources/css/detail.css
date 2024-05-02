@@ -87,6 +87,13 @@
     height: 15%;
 }
 
+.password-input {
+    width: 20%;
+    height: 50%;
+    font-size: 17px;
+    padding: 0 5px;
+}
+
 .modify-btn {
     justify-content: center;
     align-items: center;
@@ -95,6 +102,7 @@
     height : 50%;
     border : 1px solid #5F95FF;
     color : #5F95FF;
+    margin-left: 20px;
 }
 
 .delete-btn {

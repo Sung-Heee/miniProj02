@@ -62,4 +62,41 @@ public class LoginController {
 
         return map;
     }
+
+    @RequestMapping("existUser")
+    @ResponseBody
+    public Map<String, Object> existUser(@RequestBody MemberVO memberVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        MemberVO userEmail = memberService.existUser(memberVO);
+
+        if (userEmail == null) {
+            map.put("existUser", false);
+            map.put("statusMessage", "사용 가능한 이메일입니다.");
+        } else {
+            map.put("existUser", true);
+            map.put("statusMessage", "이미 존재하는 이메일입니다.");
+        }
+
+
+        return map;
+    }
+
+    @RequestMapping("existNickname")
+    @ResponseBody
+    public Map<String, Object> existNickname(@RequestBody MemberVO memberVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        MemberVO userNickname = memberService.existNickName(memberVO);
+
+        if (userNickname == null) {
+            map.put("existNickname", false);
+            map.put("statusMessage", "사용 가능한 닉네임입니다.");
+        } else {
+            map.put("existNickname", true);
+            map.put("statusMessage", "이미 존재하는 닉네임입니다.");
+        }
+
+        return map;
+    }
 }

@@ -31,14 +31,14 @@
                 <div class="member-input-div">
                     <div class="member-label">비밀번호</div>
                     <div class="member-input">
-                        <input type="password" id="UserPassword" name="member_pwd" required>
+                        <input type="password" id="userPassword" name="member_pwd" required>
                     </div>
                 </div>
 
                 <div class="member-input-div">
                     <div class="member-label">비밀번호 확인</div>
                     <div class="member-input">
-                        <input type="password" id="UserPasswordCheck"  required>
+                        <input type="password" id="userPasswordCheck"  required>
                     </div>
                 </div>
 
@@ -52,7 +52,10 @@
                 <div class="member-input-div">
                     <div class="member-label">닉네임</div>
                     <div class="member-input">
-                        <input type="text" name="member_nickname" required>
+                        <input type="text" name="member_nickname" id="userNickname" required>
+                    </div>
+                    <div class="member-duplicatedId">
+                        <input type="button" id="duplicateNickname" value="중복확인">
                     </div>
                 </div>
 
@@ -95,57 +98,91 @@
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
     const insertForm = document.getElementById("insertForm");
-    const userPassword = document.getElementById("UserPassword");
+    const userEmail = document.getElementById("userEmail");
+    const userPassword = document.getElementById("userPassword");
     const userPasswordCheck = document.getElementById("userPasswordCheck");
+    const userNickname = document.getElementById("userNickname");
 
     // 이메일 중복확인
     let validUserEmail = "";
+    // 닉네임 중복확인
+    let validUserNickname = "";
 
     insertForm.addEventListener("submit", e => {
         e.preventDefault();
 
-        // if (validUserEmail === "" || userEmail.value !== validUserEmail) {
-        //     alert("이메일 중복확인을 해주세요.");
-        //     return false;
-        // }
+        if (validUserEmail === "" || userEmail.value !== validUserEmail) {
+            alert("이메일 중복확인을 해주세요.");
+            return false;
+        }
 
-        // if (userPassword.value !== userPasswordCheck.value) {
-        //     alert("비밀번호가 일치하지 않습니다.");
-        //
-        //     // 비밀번호 잘못되면 값 비워주고 focus()
-        //     userPasswordCheck.value = "";
-        //     userPasswordCheck.focus();
-        //     return false;
-        // }
+        if (validUserNickname === "" || userNickname.value !== validUserNickname) {
+            alert("닉네임 중복확인을 해주세요.");
+            return false;
+        }
+
+        if (userPassword.value !== userPasswordCheck.value) {
+            alert("비밀번호가 일치하지 않습니다.");
+
+            // 비밀번호 잘못되면 값 비워주고 focus()
+            userPasswordCheck.value = "";
+            userPasswordCheck.focus();
+            return false;
+        }
 
         myFetch("insert", "insertForm", json => {
             if (json.status === 0) {
                 alert(json.statusMessage);
                 location="loginForm";
-            } else  {
+            } else if (json.status === -1) {
+                alert(json.statusMessage);
+            } else {
                 alert(json.statusMessage);
             }
         });
     });
 
-    // const duplicatedEmail = document.getElementById("duplicateEmail");
-    // duplicatedEmail.addEventListener("click", () => {
-    //     const userEmail = document.getElementById("userEmail")
-    //
-    //     if (userEmail.value == "" ) {
-    //         alert("아이디를 입력해주세요.");
-    //         userEmail.focus();
-    //         return;
-    //     }
-    //
-    //     const param = {
-    //         action : "existUserEmail",
-    //         userEmail : userEmail.value
-    //     }
-    //
-    //     fetch()
-    //
-    // })
+    const duplicatedEmail = document.getElementById("duplicateEmail");
+    const duplicateNickname = document.getElementById("duplicateNickname");
+    duplicatedEmail.addEventListener("click", () => {
+        const userEmail = document.getElementById("userEmail")
+
+        if (userEmail.value === "" ) {
+            alert("이메일을 입력해주세요.");
+            userEmail.focus();
+            return;
+        }
+
+        myFetch("existUser", {member_email : userEmail.value}, json => {
+            if (json.existUser === true) {
+                alert(json.statusMessage);
+                validUserEmail = "";
+            } else {
+                alert(json.statusMessage);
+                validUserEmail = userEmail.value;
+            }
+        })
+    })
+
+    duplicateNickname.addEventListener("click", () => {
+        const userNickname = document.getElementById("userNickname")
+
+        if (userNickname.value === "" ) {
+            alert("닉네임을 입력해주세요.");
+            userNickname.focus();
+            return;
+        }
+
+        myFetch("existNickname", {member_nickname : userNickname.value}, json => {
+            if (json.existNickname === true) {
+                alert(json.statusMessage);
+                validUserNickname = "";
+            } else {
+                alert(json.statusMessage);
+                validUserNickname = userNickname.value;
+            }
+        })
+    })
 </script>
 </body>
 </html>

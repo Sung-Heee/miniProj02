@@ -23,7 +23,7 @@
 
 <div class="insertForm-container">
 
-    <form id="insertForm" action="insert" method="post">
+    <form id="insertForm" action="insert" method="post" enctype="multipart/form-data">
         <%-- csrf 토큰 설정 --%>
         <sec:csrfInput/>
 
@@ -40,6 +40,9 @@
                 <div class="insertForm-content-input-container">
                     <textarea class="insertForm-content-input" id="board_content" name="board_content" placeholder="내용을 입력해주세요."></textarea>
                 </div>
+            </div>
+            <div id="div_file">
+                <input type="file" name="file">
             </div>
 <%--            <div class="insertForm-file-container">--%>
 <%--                <div class="insertForm-file">File</div>--%>
@@ -62,8 +65,6 @@
 
 const insertForm = document.getElementById("insertForm");
 
-
-
 // ck-editor
 let board_content; // ck-editor의 객체를 저장하기 위한 변수
 ClassicEditor.create(document.querySelector('#board_content'))
@@ -79,7 +80,7 @@ ClassicEditor.create(document.querySelector('#board_content'))
 insertForm.addEventListener("submit", e => {
     e.preventDefault();
 
-    myFetch("insert", "insertForm", json => {
+    myFileFetch("insert", "insertForm", json => {
         if (json.status === 0) {
             alert(json.statusMessage);
             location = "/board/list";

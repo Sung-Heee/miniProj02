@@ -26,6 +26,9 @@
 
     <!-- 글 등록 -->
     <insert id="insert">
+        <selectKey order="AFTER" keyProperty="board_id" resultType="String">
+            select LAST_INSERT_ID()
+        </selectKey>
         insert into
             tb_board
         (board_title, board_content, member_email, board_date, board_pwd)

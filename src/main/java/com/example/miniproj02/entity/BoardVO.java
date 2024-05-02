@@ -24,10 +24,10 @@ public class BoardVO {
 //    private String board_token;
 
     //업로드 파일
-//    private MultipartFile file;
+    private MultipartFile file;
 
     //첨부파일
 //    private BoardFileVO boardFileVO;
-    private String input_pwd;
 
+    private String input_pwd;
 }

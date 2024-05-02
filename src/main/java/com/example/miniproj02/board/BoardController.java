@@ -52,7 +52,7 @@ public class BoardController {
 
     @RequestMapping("insert")
     @ResponseBody
-    public Map<String , Object> insert(@RequestBody BoardVO boardVO) {
+    public Map<String , Object> insert(BoardVO boardVO) {
         Map<String, Object> map = new HashMap<>();
 
         int updated = boardService.insert(boardVO);

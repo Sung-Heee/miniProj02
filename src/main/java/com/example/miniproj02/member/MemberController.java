@@ -78,7 +78,7 @@ public class MemberController {
 
         if (updated == 1) {
             SecurityContextHolder.clearContext();
-            
+
             map.put("status", 0);
             map.put("statusMessage", "탈퇴되었습니다.");
         } else {

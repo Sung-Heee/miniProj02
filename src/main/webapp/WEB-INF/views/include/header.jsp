@@ -20,7 +20,7 @@
         <div class="menu-container">
             <a href="/" class="menu-btn">Company</a>
             <a href="<c:url value='/board/list'/>" class="menu-btn">Board</a>
-            <a href="<c:url value='/member/list'/>" class="menu-btn">Mypage</a>
+            <a href="<c:url value='/member/myPage'/>" class="menu-btn">Mypage</a>
         </div>
 
         <div class="sign-container">

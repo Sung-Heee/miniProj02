@@ -1,0 +1,124 @@
+@import "reset.css";
+
+/* 마이페이지  */
+.mypage-container {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+    height : calc(100vh - 100px);
+}
+
+.mypage-inner-container {
+    width : 70vw;
+    height : 70vh;
+}
+
+.mypage-top-container{
+    width : 100%;
+    height: 15%;
+    border-bottom : 3px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-userid {
+    height : 70%;
+    padding : 10px 100px;
+    font-size : 35px;
+    background-color: #5F95FF;
+    color : white;
+    border-radius:50px;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-content-container {
+    height : 75%;
+    display : flex;
+    flex-direction: column;
+}
+
+.mypage-content {
+    display : flex;
+    width : 100%;
+    height : 20%;
+    align-items: center;
+}
+
+.mypage-area {
+    width : 50%;
+    height : 100%;
+    display : flex;
+    font-size : 20px;
+    align-items: center;
+}
+
+.mypage-content-area > .mypage-input {
+    border : none;
+    width : 100%;
+}
+
+.mypage-title-area {
+    padding : 0 5%;
+    width : 30%;
+    height : 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mypage-content-area {
+    width : 70%;
+    height : 50%;
+    display: flex;
+    align-items: center;
+    background-color: #F0F0F0;
+    border-radius : 50px;
+    padding : 0 20px;
+}
+
+
+.input-radio , .input-checkbox {
+    margin : 0 5px;
+    font-size: 17px;
+}
+
+.mypage-btn-container {
+    width : 100%;
+    height : 10%;
+    display : flex;
+    justify-content: flex-end;
+}
+
+.mypage-btn-div {
+    font-size : 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mypage-modify-btn  {
+    cursor : pointer;
+    background-color:transparent;
+    font-size : 20px;
+    color : #5F95FF;
+    width : 150px;
+    height : 70%;
+    border-radius: 50px;
+    border : 1px solid #5F95FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mypage-withdraw-btn {
+    width : 150px;
+    height : 70%;
+    background-color: #5F95FF;
+    border-radius: 50px;
+    color : white;
+    display: flex;
+    align-items: center;
+    margin-left : 10px;
+    justify-content: center;
+}

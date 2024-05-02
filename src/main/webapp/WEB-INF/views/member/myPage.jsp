@@ -103,6 +103,33 @@ function jsUpdate() {
     }
 }
 
+function jsWithdraw() {
+    if (password.value === "") {
+        alert("비밀번호를 입력해주세요.")
+    } else if (passwordCheck.value === "") {
+        alert("비밀번호 확인을 입력해주세요.")
+    } else {
+        if (password.value !== passwordCheck.value) {
+            alert("확인 비밀번호와 일치하지 않습니다.")
+        } else {
+            myFetch("checkMemberPwd", {member_id : ${principal.member_id}, input_pwd : password.value}, json => {
+                if (json.status === 0) {
+                    myFetch("withdraw", {member_id : ${principal.member_id}}, json => {
+                        if (json.status === 0) {
+                            alert(json.statusMessage)
+                            location.href = "/"
+                        } else {
+                            alert(json.statusMessage)
+                        }
+                    })
+                } else {
+                    alert(json.statusMessage);
+                }
+            })
+        }
+    }
+}
+
 </script>
 </body>
 </html>

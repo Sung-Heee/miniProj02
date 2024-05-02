@@ -69,5 +69,25 @@ public class MemberController {
         return map;
     }
 
+    @RequestMapping("withdraw")
+    @ResponseBody
+    public Map<String, Object> withdraw(@RequestBody MemberVO memberVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        int updated = memberService.withdraw(memberVO);
+
+        if (updated == 1) {
+            SecurityContextHolder.clearContext();
+            
+            map.put("status", 0);
+            map.put("statusMessage", "탈퇴되었습니다.");
+        } else {
+            map.put("status", -1);
+            map.put("statusMessage", "탈퇴 실패하였습니다..");
+        }
+
+        return map;
+    }
+
 
 }

@@ -55,4 +55,8 @@ public class MemberService implements UserDetailsService {
     public int update(MemberVO memberVO) {
         return memberMapper.update(memberVO);
     }
+
+    public int withdraw(MemberVO memberVO) {
+        return memberMapper.withdraw(memberVO);
+    }
 }

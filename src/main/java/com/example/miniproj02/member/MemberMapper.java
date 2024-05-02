@@ -22,4 +22,6 @@ public interface MemberMapper {
     MemberVO getPwd(MemberVO memberVO);
 
     int update(MemberVO memberVO);
+
+    int withdraw(MemberVO memberVO);
 }

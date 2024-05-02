@@ -37,4 +37,12 @@
             , #{size}
         )
     </insert>
+
+    <select id="getBoardFileVO" resultType="BoardFileVO">
+        select
+            *
+        from tb_board_file
+        where board_id = #{board_id}
+        limit 0, 1
+    </select>
 </mapper>

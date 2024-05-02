@@ -23,11 +23,12 @@ public class BoardVO {
     //게시물 토큰 변수 선언
 //    private String board_token;
 
-    //업로드 파일
+    // 업로드 파일
     private MultipartFile file;
 
-    //첨부파일
-//    private BoardFileVO boardFileVO;
+    // 첨부파일
+    private BoardFileVO boardFileVO;
 
+    // 게시물 작성할 때 입력한 비밀번호
     private String input_pwd;
 }

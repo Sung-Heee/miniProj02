@@ -67,6 +67,8 @@ public class BoardService {
             result = boardFileMapper.insert(boardFileVO);
         }
 
+
+
         return result;
     }
 
@@ -111,6 +113,10 @@ public class BoardService {
 
     public BoardVO detail(BoardVO boardVO) {
         BoardVO resultVO = boardMapper.detail(boardVO);
+
+        // 첨부파일 얻기
+        resultVO.setBoardFileVO(boardFileMapper.getBoardFileVO(boardVO));
+
         return resultVO;
     }
 

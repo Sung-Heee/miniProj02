@@ -59,4 +59,12 @@ public class MemberService implements UserDetailsService {
     public int withdraw(MemberVO memberVO) {
         return memberMapper.withdraw(memberVO);
     }
+
+    public MemberVO existUser(MemberVO memberVO) {
+        return memberMapper.existUser(memberVO);
+    }
+
+    public MemberVO existNickName(MemberVO memberVO) {
+        return memberMapper.existNickName(memberVO);
+    }
 }

@@ -84,4 +84,16 @@
         delete from tb_member
         where member_id = #{member_id}
     </delete>
+
+    <select id="existUser" resultType="MemberVO">
+        select *
+        from tb_member
+        where member_email = #{member_email}
+    </select>
+
+    <select id="existNickName" resultType="MemberVO">
+        select *
+        from tb_member
+        where member_nickname = #{member_nickname}
+    </select>
 </mapper>

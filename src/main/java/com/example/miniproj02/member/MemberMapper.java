@@ -24,4 +24,8 @@ public interface MemberMapper {
     int update(MemberVO memberVO);
 
     int withdraw(MemberVO memberVO);
+
+    MemberVO existUser(MemberVO memberVO);
+
+    MemberVO existNickName(MemberVO memberVO);
 }

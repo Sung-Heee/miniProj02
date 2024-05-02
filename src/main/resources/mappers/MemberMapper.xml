@@ -66,4 +66,22 @@
                      #{member_gender}
                  )
     </insert>
+
+    <select id="getPwd" resultType="MemberVO">
+        select
+            member_pwd
+        from tb_member
+        where member_id = #{member_id}
+    </select>
+
+    <update id="update">
+        update tb_member
+        set member_name = #{member_name}, member_nickname = #{member_nickname}, member_gender = #{member_gender}, member_address = #{member_address}, member_phone=#{member_phone}
+        where member_id = #{member_id}
+    </update>
+
+    <delete id="withdraw">
+        delete from tb_member
+        where member_id = #{member_id}
+    </delete>
 </mapper>

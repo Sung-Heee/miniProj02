@@ -121,7 +121,7 @@
         myFetch("insert", "insertForm", json => {
             if (json.status === 0) {
                 alert(json.statusMessage);
-                location="/";
+                location="loginForm";
             } else  {
                 alert(json.statusMessage);
             }

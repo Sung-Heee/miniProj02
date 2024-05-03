@@ -46,6 +46,16 @@
                 </div>
             </div>
 
+            <div class="detail-file">
+                <div class="title">
+                    첨부파일
+                </div>
+
+                <div class="file-content" style="cursor: pointer" id="boardFile" data-board-file-no="" onclick="onBoardFileDownload(this)">
+                    ${board.boardFileVO.original_filename}
+                </div>
+            </div>
+
             <div class="detail-writer">
                 <div class="title">
                     작성자
@@ -96,6 +106,15 @@
 
 <script type="text/javascript" src="/resources/js/common.js"></script>
 <script type="text/javascript">
+const boardFile = document.getElementById("boardFile");
+boardFile.setAttribute("data-board-file-no", ${board.boardFileVO.board_file_id});
+
+const onBoardFileDownload = boardFile => {
+    const board_file_no = boardFile.getAttribute("data-board-file-no");
+    alert("첨부파일 번호 : " + board_file_no);
+    location.href = "<c:url value="/board/fileDownload/"/>" + board_file_no;
+}
+
 const password = document.getElementById("password");
 
 function jsUpdate() {

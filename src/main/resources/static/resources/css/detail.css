@@ -42,10 +42,10 @@
     height : 90%;
 }
 
-.detail-title, .detail-writer, .detail-date {
+.detail-title, .detail-writer, .detail-date, .detail-file {
     display : flex;
     align-items: center;
-    height : 15%;
+    height : 14%;
     border-bottom : 1px solid #D7D7D7;
 }
 
@@ -53,7 +53,7 @@
     padding : 3% 0 3% 0;
     border-bottom : 1px solid #D7D7D7;
     display : flex;
-    height : 40%;
+    height : 30%;
 }
 
 .title {
@@ -62,11 +62,16 @@
     width : 10%;
 }
 
-.content {
+.content, .file-content {
     display : flex;
     width : 90%;
-
+    flex-direction: column;
 }
+
+.file-content:hover {
+    color: #5F95FF;
+}
+
 
 .content-input {
     font-size : 20px;

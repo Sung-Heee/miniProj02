@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class MemberVO implements UserDetails {
     private String member_address;
     private String member_phone;
     private String member_gender;
-    private String member_reg_date;
+    private Date member_reg_date;
     private String member_update_date;
     private String member_roles;
     private String member_account_expired;

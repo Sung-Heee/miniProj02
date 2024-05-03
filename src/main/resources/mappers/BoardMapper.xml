@@ -55,4 +55,11 @@
         delete from tb_board
         where board_id = #{board_id}
     </delete>
+
+    <!-- 조회수 -->
+    <update id="incViewCount" >
+        update tb_board set
+            view_count = view_count + 1
+        where board_id = #{board_id}
+    </update>
 </mapper>

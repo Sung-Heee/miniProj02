@@ -146,6 +146,12 @@ public class BoardService {
     }
 
     public BoardVO detail(BoardVO boardVO) {
+        // view count 증가
+        // 만약 값이 증가하지 않으면 게시물이 존재하지 않는 경우
+        if (0 == boardMapper.incViewCount(boardVO)) {
+            return null;
+        }
+
         BoardVO resultVO = boardMapper.detail(boardVO);
 
         // 첨부파일 얻기

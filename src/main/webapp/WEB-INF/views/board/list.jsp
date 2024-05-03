@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -72,15 +73,17 @@
                     <div class="no-area">No.</div>
                     <div class="title-area">제목</div>
                     <div class="writer-area">작성자</div>
+                    <div class="view-area">조회수</div>
                     <div class="date-area">작성일자</div>
-                    <div class="admin-delete-btn"></div>
+<%--                    <div class="admin-delete-btn"></div>--%>
                 </div>
                 <c:forEach var="board" items="${pageResponseVO.list}">
                     <div class="list-content">
                         <div class="no-area">${board.board_id}</div>
                         <div class="title-area"><a href="detail?board_id=${board.board_id}" class="title-a">${board.board_title}</a></div>
                         <div class="writer-area">${board.board_writer}</div>
-                        <div class="date-area">${board.board_date}</div>
+                        <div class="view-area">${board.view_count}</div>
+                        <div class="date-area"><fmt:formatDate value="${board.board_date}" pattern="yyyy.MM.dd" /></div>
 <%--                        <c:if test="${loginVO.user_id eq 'admin'}">--%>
 <%--                            <div class="admin-delete-btn"><a href="javascript:jsDelete(${board.bno})">삭제</a></div>--%>
 <%--                        </c:if>--%>

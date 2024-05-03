@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class BoardVO {
     private String board_title;
     private String board_content;
     private String member_email;
-    private String board_date;
+    private Date board_date;
     private String view_count;
     private String board_pwd;
     private String board_writer;

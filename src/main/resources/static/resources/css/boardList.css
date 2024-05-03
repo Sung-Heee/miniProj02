@@ -130,7 +130,13 @@ select {
 }
 
 .title-area {
-    width: 40%;
+    width: 35%;
+    display : flex;
+    justify-content: center;
+}
+
+.view-area {
+    width: 15%;
     display : flex;
     justify-content: center;
 }

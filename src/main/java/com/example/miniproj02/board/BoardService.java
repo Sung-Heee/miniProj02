@@ -132,4 +132,8 @@ public class BoardService {
     public int delete(BoardVO boardVO) {
         return boardMapper.delete(boardVO);
     }
+
+    public BoardFileVO getBoardFile(int boardFileNo) {
+        return boardFileMapper.getBoardFile(boardFileNo);
+    }
 }

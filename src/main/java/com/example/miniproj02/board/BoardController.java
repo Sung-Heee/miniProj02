@@ -1,6 +1,7 @@
 package com.example.miniproj02.board;
 
 import com.example.miniproj02.code.CodeService;
+import com.example.miniproj02.entity.BoardFileVO;
 import com.example.miniproj02.entity.BoardVO;
 import com.example.miniproj02.page.PageRequestVO;
 import lombok.extern.slf4j.Slf4j;
@@ -9,13 +10,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -130,6 +137,54 @@ public class BoardController {
         }
 
         return map;
+    }
+
+    @RequestMapping("fileDownload/{board_file_no}")
+    public void downloadFile(@PathVariable("board_file_no") int board_file_no, HttpServletResponse response) throws Exception{
+        // 파일의 내용을 클라이언트에게 전송해야 하므로
+        // 파일의 내용을 OutputStream에 작성하여 클라이언트로 보낸다.
+        OutputStream out = response.getOutputStream();
+
+        // 파일 번호를 통해 파일 가져오기
+        BoardFileVO boardFileVO = boardService.getBoardFile(board_file_no);
+
+        // 만약 파일이 없으면 404
+        if (boardFileVO == null) {
+            response.setStatus(404);
+        } else {
+            // 첨부파일명 가져오기
+            String originName = boardFileVO.getOriginal_filename();
+            // 가져온 파일 이름을 UTF-8 형식으로 URL 인코딩
+            // URL 인코딩은 URL에 사용할 수 없는 문자를 특수 문자로 변환 -> URL 유효성 유지
+            originName = URLEncoder.encode(originName, "UTF-8");
+
+            // 다운로드 할 때 헤더 설정
+            response.setHeader("Cache-Control", "no-cache");
+            response.addHeader("Content-disposition", "attachment; fileName=" + originName);        }
+            response.setContentLength((int)boardFileVO.getSize());
+            response.setContentType(boardFileVO.getContent_type());
+
+            // 파일을 바이너리로 바꿔서 담아 놓고 responseOutputStream에 담아서 보낸다.
+            FileInputStream input = new FileInputStream(new File(boardFileVO.getReal_filename()));
+
+            // OutputStream에 8K씩 전달
+            byte[] buffer = new byte[1024*8];
+
+            // 파일 끝까지 읽으면 반복문 종료
+            while (true) {
+                // 파일에서 버퍼 크기만큼 데이터를 읽는다.
+                // 읽은 바이트 수를 count에 저장
+                int count = input.read(buffer);
+                if (count < 0)
+                    break;
+
+                // 읽은 데이터를 클라이언트로 전송
+                // 0 ~ count 만큼 전송
+                out.write(buffer, 0, count);
+            }
+            input.close();
+            out.close();
+
     }
 
 }

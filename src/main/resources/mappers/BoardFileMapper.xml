@@ -45,4 +45,12 @@
         where board_id = #{board_id}
         limit 0, 1
     </select>
+
+    <select id="getBoardFile" resultType="BoardFileVO">
+        select
+            *
+        from tb_board_file
+        where board_file_id = #{board_file_id}
+    </select>
+
 </mapper>

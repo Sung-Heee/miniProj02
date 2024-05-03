@@ -14,4 +14,6 @@ public interface BoardFileMapper {
     int insert(BoardFileVO boardFileVO);
 
     BoardFileVO getBoardFileVO(BoardVO boardVO);
+
+    BoardFileVO getBoardFile(int boardFileNo);
 }

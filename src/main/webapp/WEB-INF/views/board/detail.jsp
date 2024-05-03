@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -72,7 +73,7 @@
                 </div>
 
                 <div class="content">
-                    ${board.board_date}
+                    <fmt:formatDate value="${board.board_date}" pattern="yyyy.MM.dd" />
                 </div>
             </div>
             <%--            <c:choose>--%>

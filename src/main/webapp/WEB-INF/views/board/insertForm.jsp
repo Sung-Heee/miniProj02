@@ -27,6 +27,8 @@
         <%-- csrf 토큰 설정 --%>
         <sec:csrfInput/>
 
+        <%-- 게시물 토큰 설정 --%>
+        <input type="hidden" id="board_token" name="board_token" value="${board_token}"><br/>
         <input type="hidden" name="member_email" value="${principal.member_email}">
 
         <div class="insertForm-inner-container">

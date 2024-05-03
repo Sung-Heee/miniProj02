@@ -74,7 +74,11 @@ public class BoardService {
             result = boardFileMapper.insert(boardFileVO);
         }
 
+        // board_token의 상태를 임시 상태에서 완료 상태로 변경
+        boardTokenMapper.updateStatusComplete(boardVO.getBoard_token());
 
+        // 게시물 이미지의 board_token 값인 자료를 board_id로 변경
+        boardImageFileMapper.updateBoardNo(boardVO);
 
         return result;
     }

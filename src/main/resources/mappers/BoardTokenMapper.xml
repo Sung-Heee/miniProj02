@@ -11,4 +11,9 @@
         values (#{board_token})
     </insert>
 
+    <update id="updateStatusComplete">
+        update tb_board_token
+        set status = 1
+        where board_token = #{board_token}
+    </update>
 </mapper>

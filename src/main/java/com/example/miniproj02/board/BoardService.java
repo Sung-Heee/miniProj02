@@ -78,8 +78,10 @@ public class BoardService {
 
         String board_content = boardVO.getBoard_content();
 
+        log.info("board_content {}", board_content);
+
         // 파일 다운로드 URL을 구성한다.
-        final String imageURL = "/board/image";
+        final String imageURL = "/board/image/";
 
         // 1. board_token의 값에 대한 이미지 목록을 얻는다.
         List<BoardImageFileVO> boardImageFiles = boardImageFileMapper.getBoardImages(boardVO.getBoard_token());
@@ -87,9 +89,13 @@ public class BoardService {
         // 2. 게시물 내용 중 이미지가 사용중이 아니면 삭제 목록에 추가
         List<BoardImageFileVO> deleteImageList = boardImageFiles.stream().filter(
                 // 게시물 내용에 해당 이미지가 존재하지 않으면 삭제 대상
-                fileUpload -> !board_content.contains(imageURL + fileUpload.getBoard_image_file_id())
+                fileUpload ->  {
+                    log.info("imageURL + fileUpload.getBoard_image_file_id()   {}", imageURL + fileUpload.getBoard_image_file_id());
+                    return !board_content.contains(imageURL + fileUpload.getBoard_image_file_id());
+                }
         ).collect(Collectors.toList());
 
+        log.info("deleteImageList {}", deleteImageList);
         if (deleteImageList.size() != 0) {
             //3. 삭제 목록에 있는 이미지를 (파일)삭제 한다
             deleteImageList.stream().forEach(boardImageFile -> new File(boardImageFile.getReal_filename()).delete());
@@ -173,8 +179,8 @@ public class BoardService {
         return boardMapper.delete(boardVO);
     }
 
-    public BoardFileVO getBoardFile(int boardFileNo) {
-        return boardFileMapper.getBoardFile(boardFileNo);
+    public BoardFileVO getBoardFile(int board_file_id) {
+        return boardFileMapper.getBoardFile(board_file_id);
     }
 
     public Object getBoardToken() {
@@ -219,6 +225,7 @@ public class BoardService {
                 .size(file.getSize())
                 .build();
 
+        log.info("boardImageFileVO = {}", boardImageFileVO);
         //게시물에 내용에 추가되는 이미지 파일을 DB에 저장한다
         boardImageFileMapper.insert(boardImageFileVO);
 

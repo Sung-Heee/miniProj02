@@ -21,5 +21,5 @@ public interface BoardImageFileMapper {
 
     int deleteBoardImageFiles(Map<String, Object> map);
 
-    List<BoardImageFileVO> getBoardImages(String boardToken);
+    List<BoardImageFileVO> getBoardImages(String board_token);
 }

@@ -233,11 +233,14 @@ public class BoardController {
         MultipartFile file = boardImageFileVO.getUpload();
         String board_token = boardImageFileVO.getBoard_token();
 
+        System.out.println("board_token = " + board_token);
+
         //이미지 첨부 파일을 저장한다
         String board_image_file_id = boardService.boardImageFileUpload(board_token, file);
 
         // 이미지를 현재 경로와 연관된 파일에 저장하기 위해 현재 경로를 알아냄
         String uploadPath = application.getContextPath() + "/board/image/" + board_image_file_id;
+        log.info("uploadPath = {}", uploadPath);
 
         Map<String, Object> result = new HashMap<>();
         result.put("uploaded" , true); // 업로드 완료

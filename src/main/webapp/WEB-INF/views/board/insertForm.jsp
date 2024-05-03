@@ -43,8 +43,9 @@
                     <textarea class="insertForm-content-input" id="board_content" name="board_content" placeholder="내용을 입력해주세요."></textarea>
                 </div>
             </div>
-            <div id="div_file">
-                <input type="file" name="file">
+            <div class="insertForm-title-container">
+                <div class="insertForm-title">File</div>
+                <input type="file" name="file" class="file-input">
             </div>
 <%--            <div class="insertForm-file-container">--%>
 <%--                <div class="insertForm-file">File</div>--%>

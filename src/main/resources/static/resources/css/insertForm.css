@@ -111,3 +111,7 @@
 .insertForm-btn:hover {
     background-color: #4681F3;
 }
+
+.file-input {
+    margin: 10px 0;
+}

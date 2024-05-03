@@ -16,4 +16,21 @@
         set status = 1
         where board_token = #{board_token}
     </update>
+
+    <select id="listToken" resultType="BoardTokenVO">
+--         현재 시간 기준으로 30분전에 추가되고 사용중이 아닌 것을 얻는다.
+        <![CDATA[
+            SELECT
+                board_token
+            FROM  tb_board_token
+            where status = 0 and make_date < DATE_ADD(now(), INTERVAL -30 MINUTE)
+        ]]>
+    </select>
+
+    <delete id="delete">
+        delete from tb_board_token
+        where board_token in <foreach collection="list" item="item" open="(" separator="," close=")">
+        #{item.board_token}
+    </foreach>
+    </delete>
 </mapper>

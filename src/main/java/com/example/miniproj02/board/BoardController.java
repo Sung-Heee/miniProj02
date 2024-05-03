@@ -2,19 +2,18 @@ package com.example.miniproj02.board;
 
 import com.example.miniproj02.code.CodeService;
 import com.example.miniproj02.entity.BoardFileVO;
+import com.example.miniproj02.entity.BoardImageFileVO;
 import com.example.miniproj02.entity.BoardVO;
 import com.example.miniproj02.page.PageRequestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -34,6 +33,8 @@ public class BoardController {
     BoardService boardService;
     @Autowired
     CodeService codeService;
+    @Autowired
+    ServletContext application;
 
 
     // pageNO => 1 이어야하는데 만약 음수면 pageRequestVO, bindingResult 여기서 처리
@@ -53,7 +54,9 @@ public class BoardController {
     }
 
     @RequestMapping("insertForm")
-    public String insertForm() {
+    public String insertForm(Model model) {
+        // 게시물 토큰을 생성하여 model에 저장
+        model.addAttribute("board_token", boardService.getBoardToken());
         return "board/insertForm";
     }
 
@@ -185,6 +188,62 @@ public class BoardController {
             input.close();
             out.close();
 
+    }
+
+    // 게시물 내용에 추가된 이미지 파일 다운로드
+    @RequestMapping("image/{board_image_file_id}")
+    public void image(@PathVariable("board_image_file_id") String board_image_file_id, HttpServletResponse response) throws Exception {
+        OutputStream out = response.getOutputStream();
+
+        BoardImageFileVO boardImageFileVO = boardService.getBoardImageFile(board_image_file_id);
+
+        if (boardImageFileVO == null) {
+            response.setStatus(404);
+        } else {
+
+            String originName = boardImageFileVO.getOriginal_filename();
+            originName = URLEncoder.encode(originName, "UTF-8");
+            //다운로드 할 때 헤더 설정
+            response.setHeader("Cache-Control", "no-cache");
+            response.addHeader("Content-disposition", "attachment; fileName=" + originName);
+            response.setContentLength((int) boardImageFileVO.getSize());
+            response.setContentType(boardImageFileVO.getContent_type());
+
+            //파일을 바이너리로 바꿔서 담아 놓고 responseOutputStream에 담아서 보낸다.
+            FileInputStream input = new FileInputStream(new File(boardImageFileVO.getReal_filename()));
+
+            //outputStream에 8k씩 전달
+            byte[] buffer = new byte[1024 * 8];
+
+            while (true) {
+                int count = input.read(buffer);
+                if (count < 0) break;
+                out.write(buffer, 0, count);
+            }
+            input.close();
+            out.close();
+        }
+    }
+
+    @RequestMapping("boardImageUpload")
+    @ResponseBody
+    public Object boardImageUpload(BoardImageFileVO boardImageFileVO) throws ServletException, IOException {
+        // ckeditor는 이미지 업로드 후 이미지 표시하기 위해 uploaded 와 url을 json 형식으로 받아야 함
+        // ckeditor 에서 파일을 보낼 때 upload : [파일] 형식으로 해서 넘어옴, upload라는 키 이용하여 파일을 저장 한다
+        MultipartFile file = boardImageFileVO.getUpload();
+        String board_token = boardImageFileVO.getBoard_token();
+
+        //이미지 첨부 파일을 저장한다
+        String board_image_file_id = boardService.boardImageFileUpload(board_token, file);
+
+        // 이미지를 현재 경로와 연관된 파일에 저장하기 위해 현재 경로를 알아냄
+        String uploadPath = application.getContextPath() + "/board/image/" + board_image_file_id;
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("uploaded" , true); // 업로드 완료
+        result.put("url", uploadPath); // 업로드 파일 경로
+
+        return result;
     }
 
 }

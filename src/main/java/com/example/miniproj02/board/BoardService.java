@@ -1,6 +1,7 @@
 package com.example.miniproj02.board;
 
 import com.example.miniproj02.entity.BoardFileVO;
+import com.example.miniproj02.entity.BoardImageFileVO;
 import com.example.miniproj02.entity.BoardVO;
 import com.example.miniproj02.page.PageRequestVO;
 import com.example.miniproj02.page.PageResponseVO;
@@ -29,6 +30,12 @@ public class BoardService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    BoardTokenMapper boardTokenMapper;
+
+    @Autowired
+    BoardImageFileMapper boardImageFileMapper;
 
     private final String CURR_IMAGE_REPO_PATH = "/Users/hee/upload";
 
@@ -135,5 +142,57 @@ public class BoardService {
 
     public BoardFileVO getBoardFile(int boardFileNo) {
         return boardFileMapper.getBoardFile(boardFileNo);
+    }
+
+    public Object getBoardToken() {
+        final String board_token = UUID.randomUUID().toString();
+
+        // 생성된 토큰을 데이터베이스에 저장
+        boardTokenMapper.insert(board_token);
+
+        // 생성된 토큰 반환
+        return board_token;
+    }
+
+    public String boardImageFileUpload(String board_token, MultipartFile file) {
+        Calendar now = Calendar.getInstance();
+        //저장위치를 오늘의 날짜로 한다
+        String realFolder = date_format.format(now.getTime());
+        //실제 저장 위치를 생성한다
+        File realPath = new File(CURR_IMAGE_REPO_PATH + realFolder);
+        //오늘 날짜에 대한 폴더가 없으면 생성한다
+        if(!realPath.exists()) {
+            realPath.mkdirs();
+        }
+        //실제 파일명으로 사용할 이름을 생성한다
+        String fileNameReal = UUID.randomUUID().toString();
+        File realFile = new File(realPath, fileNameReal);
+
+        //파일을 실제 위치에 저장한다
+        try {
+            file.transferTo(realFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info("transferTo : ", e);
+            return null;
+        }
+
+        //게시물에 내용에 추가되는 이미지 파일 객체를 생성한다
+        BoardImageFileVO boardImageFileVO = BoardImageFileVO.builder()
+                .board_token(board_token)
+                .content_type(file.getContentType())
+                .original_filename(file.getOriginalFilename())
+                .real_filename(realFile.getAbsolutePath())
+                .size(file.getSize())
+                .build();
+
+        //게시물에 내용에 추가되는 이미지 파일을 DB에 저장한다
+        boardImageFileMapper.insert(boardImageFileVO);
+
+        return boardImageFileVO.getBoard_image_file_id();
+    }
+
+    public BoardImageFileVO getBoardImageFile(String board_image_file_id) {
+        return boardImageFileMapper.findById(board_image_file_id);
     }
 }

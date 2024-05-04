@@ -40,7 +40,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         // 설정(config)에서 defaultSuccessUrl("/")으로 설정한 것 보다 아래의 코드로 설정한 것이 변경돼서 동작함.
 
         if (role.equals("ADMIN")) {
-            setDefaultTargetUrl("/admin/main");
+            setDefaultTargetUrl("/admin/member");
         } else {
             setDefaultTargetUrl("/");
         }

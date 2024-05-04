@@ -103,4 +103,29 @@
         from tb_member
         where member_email = #{member_email}
     </select>
+
+    <select id="getList" resultType="MemberVO">
+        select
+            *
+        from tb_member
+        order by member_id limit #{skip}, #{size}
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        select
+            count(*)
+        from tb_member
+    </select>
+
+    <update id="lock">
+        update tb_member
+        set member_account_locked = 'Y'
+        where member_id = #{member_id}
+    </update>
+
+    <update id="unlock">
+        update tb_member
+        set member_account_locked = 'N'
+        where member_id = #{member_id}
+    </update>
 </mapper>

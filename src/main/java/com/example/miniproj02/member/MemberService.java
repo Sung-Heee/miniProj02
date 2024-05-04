@@ -1,6 +1,8 @@
 package com.example.miniproj02.member;
 
 import com.example.miniproj02.entity.MemberVO;
+import com.example.miniproj02.page.PageRequestVO;
+import com.example.miniproj02.page.PageResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -66,5 +70,26 @@ public class MemberService implements UserDetailsService {
 
     public MemberVO existNickName(MemberVO memberVO) {
         return memberMapper.existNickName(memberVO);
+    }
+
+    public PageResponseVO<MemberVO> getList(PageRequestVO pageRequestVO) {
+        List<MemberVO> list = memberMapper.getList(pageRequestVO);
+        int total = memberMapper.getTotalCount(pageRequestVO);
+
+        PageResponseVO<MemberVO> pageResponseVO = PageResponseVO.<MemberVO>withAll()
+                .list(list)
+                .total(total)
+                .size(pageRequestVO.getSize())
+                .pageNo(pageRequestVO.getPageNo())
+                .build();
+        return pageResponseVO;
+    }
+
+    public boolean lock(String member_id) {
+        return memberMapper.lock(member_id);
+    }
+
+    public boolean unlock(String member_id) {
+        return memberMapper.unlock(member_id);
     }
 }

@@ -1,7 +1,10 @@
 package com.example.miniproj02.member;
 
 import com.example.miniproj02.entity.MemberVO;
+import com.example.miniproj02.page.PageRequestVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface MemberMapper {
@@ -30,4 +33,12 @@ public interface MemberMapper {
     MemberVO existNickName(MemberVO memberVO);
 
     String getRole(String email);
+
+    List<MemberVO> getList(PageRequestVO pageRequestVO);
+
+    int getTotalCount(PageRequestVO pageRequestVO);
+
+    boolean lock(String memberId);
+
+    boolean unlock(String memberId);
 }

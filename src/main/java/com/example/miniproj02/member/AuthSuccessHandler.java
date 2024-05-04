@@ -30,11 +30,21 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         // 로그인 실패시 카운트 초기화
         memberMapper.loginCountClear(authentication.getName());
 
+        // 관리자인지 확인
+        String role = memberMapper.getRole(authentication.getName());
+
+        System.out.println("role = " + role);
         System.out.println("authentication : " + authentication);
 
         // 성공시 이동할 주소
         // 설정(config)에서 defaultSuccessUrl("/")으로 설정한 것 보다 아래의 코드로 설정한 것이 변경돼서 동작함.
-        setDefaultTargetUrl("/");
+
+        if (role.equals("ADMIN")) {
+            setDefaultTargetUrl("/admin/main");
+        } else {
+            setDefaultTargetUrl("/");
+        }
+
 
         super.onAuthenticationSuccess(request, response, authentication);
     }

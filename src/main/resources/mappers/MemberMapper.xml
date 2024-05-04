@@ -96,4 +96,11 @@
         from tb_member
         where member_nickname = #{member_nickname}
     </select>
+
+    <select id="getRole" resultType="String">
+        select
+            member_roles
+        from tb_member
+        where member_email = #{member_email}
+    </select>
 </mapper>

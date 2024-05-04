@@ -28,4 +28,6 @@ public interface MemberMapper {
     MemberVO existUser(MemberVO memberVO);
 
     MemberVO existNickName(MemberVO memberVO);
+
+    String getRole(String email);
 }

@@ -9,10 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -33,9 +30,11 @@ public class MemberVO implements UserDetails {
     private String member_account_expired;
     private String member_account_locked;
     private int    member_login_count;
-    private LocalDateTime member_last_login_time;
+    private Date member_last_login_time;
 
     private String input_pwd;
+
+    private List<String> check_list;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

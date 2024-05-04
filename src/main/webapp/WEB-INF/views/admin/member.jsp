@@ -24,15 +24,27 @@
 <div class="admin-container">
     <div class="admin-top-menu-container">
         <div class="admin-search-container">
-            <div><input type="text" placeholder="이메일을 입력하세요."></div>
-            <div><input type="text" placeholder="이름을 입력하세요."></div>
-            <div><input type="text" placeholder="전화번호를 입력하세요."></div>
+            <form id="searchForm" method="post" action="member">
+                <sec:csrfInput/>
+
+                <input type="hidden" id="action" name="action" value="member">
+                <div>
+                    <input type="text" id="searchKey" name="searchKey" value="${param.searchKey}" placeholder="이메일을 입력하세요.">
+                </div>
+                <div>
+                    <input type="text" id="searchName" name="searchName" value="${param.searchName}" placeholder="이름을 입력하세요.">
+                </div>
+                <div>
+                    <input type="text" id="searchPhone" name="searchPhone" value="${param.searchPhone}" placeholder="전화번호를 입력하세요.">
+                </div>
+                <input type="submit" value="검색">
+            </form>
             <div>계정잠금여부 select</div>
         </div>
         <div>
-            <a href="javascript:jsLock()">Lock</a>
-            <a href="javascript:jsUnlock()">UnLock</a>
-            <a href="javascript:jsSelectDelete()">Delete</a>
+            <a href="javascript:jsLock()" class="admin-lock-btn">Account Lock</a>
+            <a href="javascript:jsUnlock()" class="admin-unlock-btn">Account Unlock</a>
+            <a href="javascript:jsSelectDelete()" class="admin-delete-btn">Delete</a>
         </div>
     </div>
     <div class="admin-list-container">

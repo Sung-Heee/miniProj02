@@ -48,6 +48,26 @@ header {
     align-items: center;
 }
 
+.admin-lock-btn, .admin-unlock-btn, .admin-delete-btn {
+    cursor: pointer;
+    margin-left: 20px;
+    background-color: #70E15E;
+    padding: 10px 30px;
+    font-size: 20px;
+    color: #FFF;
+}
+
+.admin-lock-btn {
+    background-color: #70E15E;
+}
+
+.admin-unlock-btn {
+    background-color: #F8BD4B;
+}
+
+.admin-delete-btn {
+    background-color: #FB5D5D;
+}
 
 .admin-list-container {
     margin: 20px 0;

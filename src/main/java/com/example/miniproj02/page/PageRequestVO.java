@@ -32,6 +32,8 @@ public class PageRequestVO {
     private String link;
 
     private String searchKey;
+    private String searchName;
+    private String searchPhone;
 
     public int getSkip(){
         return (pageNo - 1) * 10;
@@ -43,10 +45,26 @@ public class PageRequestVO {
             builder.append("page=" + this.pageNo);
             builder.append("&size=" + this.size);
 
-            //검색어가 존재할 경우
+            // 검색어가 존재할 경우
             if (this.searchKey != null && this.searchKey.length() != 0) {
                 try {
                     builder.append("&searchKey=" + URLEncoder.encode(this.searchKey,"UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+            // 검색 이름이 존재할 경우
+            if (this.searchName != null && this.searchName.length() != 0) {
+                try {
+                    builder.append("&searchName=" + URLEncoder.encode(this.searchName,"UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+            // 검색 전화번호가 존재할 경우
+            if (this.searchPhone != null && this.searchPhone.length() != 0) {
+                try {
+                    builder.append("&searchPhone=" + URLEncoder.encode(this.searchPhone,"UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

@@ -92,4 +92,8 @@ public class MemberService implements UserDetailsService {
     public boolean unlock(String member_id) {
         return memberMapper.unlock(member_id);
     }
+
+    public boolean delete(String member_id) {
+        return memberMapper.withdraw(member_id);
+    }
 }

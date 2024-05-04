@@ -41,4 +41,6 @@ public interface MemberMapper {
     boolean lock(String memberId);
 
     boolean unlock(String memberId);
+
+    boolean withdraw(String memberId);
 }

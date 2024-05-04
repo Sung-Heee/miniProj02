@@ -123,7 +123,29 @@
                 }
             })
         }
+    }
 
+    function jsSelectDelete() {
+        const checkItems = [];
+
+        const checkbox = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkbox.forEach(function (check) {
+            const member_id = check.closest('tr').querySelector('td:nth-child(2)').innerText;
+            checkItems.push(member_id);
+        });
+
+        if (checkItems.length < 1) {
+            alert("선택된 항목이 없습니다.")
+        } else {
+            myFetch("delete", {check_list : checkItems}, json => {
+                if (json.status == 0) {
+                    alert(json.statusMessage);
+                    location.reload();
+                } else {
+                    alert(json.statusMessage);
+                }
+            })
+        }
     }
 </script>
 </body>

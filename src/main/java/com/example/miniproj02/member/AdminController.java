@@ -51,8 +51,6 @@ public class AdminController {
 
         List<String> checkList = memberVO.getCheck_list();
 
-        System.out.println("checkList = " + checkList);
-
         boolean success = true;
 
         for (String member_id : checkList) {
@@ -80,8 +78,6 @@ public class AdminController {
 
         List<String> checkList = memberVO.getCheck_list();
 
-        System.out.println("checkList = " + checkList);
-
         boolean success = true;
 
         for (String member_id : checkList) {
@@ -98,6 +94,33 @@ public class AdminController {
         } else {
             map.put("status", -1);
             map.put("statusMessage", "계정 잠금 해제에 실패하였습니다.");
+        }
+        return map;
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public Map<String, Object> delete(@RequestBody MemberVO memberVO) {
+        Map<String, Object> map = new HashMap<>();
+
+        List<String> checkList = memberVO.getCheck_list();
+
+        boolean success = true;
+
+        for (String member_id : checkList) {
+            boolean result = memberService.delete(member_id);
+            if (!result) {
+                success = false;
+                break;
+            }
+        }
+
+        if (success) {
+            map.put("status", 0);
+            map.put("statusMessage", "계정이 삭제되었습니다.");
+        } else {
+            map.put("status", -1);
+            map.put("statusMessage", "계정 삭제에 실패하였습니다.");
         }
         return map;
     }

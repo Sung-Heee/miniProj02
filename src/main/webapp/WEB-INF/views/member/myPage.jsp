@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -62,7 +63,7 @@
                 </div>
                 <div class="mypage-area">
                     <div class="mypage-title-area">가입일</div>
-                    <div class="mypage-content-area">${principal.member_reg_date}</div>
+                    <div class="mypage-content-area"><fmt:formatDate value="${principal.member_reg_date}" pattern="yyyy.MM.dd" /></div>
                 </div>
             </div>
         </div>

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,12 +18,16 @@ public class BoardVO {
     private String board_title;
     private String board_content;
     private String member_email;
-    private String board_date;
+    private Date board_date;
     private String view_count;
     private String board_pwd;
     private String board_writer;
-    //게시물 토큰 변수 선언
-//    private String board_token;
+
+    // 수정된 내용
+    private String board_modify_content;
+
+    // 게시물 토큰 변수 선언
+    private String board_token;
 
     // 업로드 파일
     private MultipartFile file;

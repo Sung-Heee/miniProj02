@@ -38,6 +38,15 @@
         )
     </insert>
 
+    <update id="update">
+        update tb_board_file
+        set original_filename = #{original_filename}
+          , real_filename = #{real_filename}
+        , content_type = #{content_type}
+        , size = #{size}
+        where board_id = #{board_id}
+    </update>
+
     <select id="getBoardFileVO" resultType="BoardFileVO">
         select
             *

@@ -107,13 +107,12 @@ public class BoardController {
 
     @RequestMapping("update")
     @ResponseBody
-    public Map<String, Object> update(@RequestBody BoardVO boardVO) {
+    public Map<String, Object> update(BoardVO boardVO) {
+        System.out.println("boardVO.getBoard_content() = " + boardVO.getBoard_content());
         Map<String, Object> map = new HashMap<>();
 
         int updated = boardService.update(boardVO);
 
-        System.out.println("updated = " + updated);
-        
         if (updated == 1) {
             map.put("status", 0);
             map.put("statusMessage", "수정되었습니다.");

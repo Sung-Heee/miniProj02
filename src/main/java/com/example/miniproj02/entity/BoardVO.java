@@ -23,6 +23,9 @@ public class BoardVO {
     private String board_pwd;
     private String board_writer;
 
+    // 수정된 내용
+    private String board_modify_content;
+
     // 게시물 토큰 변수 선언
     private String board_token;
 

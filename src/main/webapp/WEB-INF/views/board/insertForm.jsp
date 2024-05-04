@@ -82,7 +82,6 @@ const csrfToken = document.querySelector("meta[name='_csrf']").content;
 // ckfinder의 이미지 업로드 URL에 get방식으로 board_token, csrf token을 추가
 const board_image_url = "<c:url value="/board/boardImageUpload?board_token=${board_token}&"/>" + csrfParameter + "=" + csrfToken;
 
-
 // ck-editor
 let board_content; // ck-editor의 객체를 저장하기 위한 변수
 ClassicEditor.create(document.querySelector('#board_content'), {
@@ -105,6 +104,7 @@ insertForm.addEventListener("submit", e => {
 
     myFileFetch("insert", "insertForm", json => {
         if (json.status === 0) {
+            console.log(board_content + "확인");
             alert(json.statusMessage);
             location = "/board/list";
         } else {

@@ -172,7 +172,27 @@ public class BoardService {
     }
 
     public int update(BoardVO boardVO) {
-        return boardMapper.update(boardVO);
+        System.out.println("내용 수정을 위한 boardVO = " + boardVO);
+        BoardFileVO boardFileVO = writeFile(boardVO.getFile());
+
+        int result = boardMapper.update(boardVO);
+
+        if (boardFileVO != null) {
+            // 첨부파일에 게시물의 아이디를 설정한다.
+            boardFileVO.setBoard_id(boardVO.getBoard_id());
+
+            System.out.println("들어왔냐 boardFileVO = " + boardFileVO);
+
+            // 파일 정보를 DB에 업데이트
+            result = boardFileMapper.update(boardFileVO);
+        }
+
+        // ck-editor에 넣은 값
+        String board_content = boardVO.getBoard_content();
+
+        log.info("board_content {}", board_content);
+
+        return result;
     }
 
     public int delete(BoardVO boardVO) {

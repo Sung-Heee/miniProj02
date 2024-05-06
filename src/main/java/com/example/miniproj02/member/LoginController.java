@@ -1,5 +1,6 @@
 package com.example.miniproj02.member;
 
+import com.example.miniproj02.entity.HobbyVO;
 import com.example.miniproj02.entity.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -17,6 +19,8 @@ public class LoginController {
 
     @Autowired
     MemberService memberService = new MemberService();
+
+
     @RequestMapping("loginForm")
     public void getLoginView(Model model,
                              @RequestParam(value = "error", required = false) String error,
@@ -35,7 +39,9 @@ public class LoginController {
     }
 
     @RequestMapping("signUp")
-    public String getSignUpView() {
+    public String getSignUpView(Model model) {
+        List<HobbyVO> hobbyList = memberService.getHobby();
+        model.addAttribute("hobbyList", hobbyList);
         return "login/signUp";
     }
 
@@ -43,7 +49,7 @@ public class LoginController {
     @ResponseBody
     public Map<String, Object> insert(@RequestBody MemberVO memberVO, HttpSession session) {
         Map<String, Object> map = new HashMap<>();
-//        System.out.println("memberVO : " + memberVO);
+        System.out.println("memberVO : " + memberVO);
 
         if (memberVO.getMember_email() == null || memberVO.getMember_email().length() == 0) {
             map.put("status", -1);
@@ -52,6 +58,14 @@ public class LoginController {
             int updated = memberService.insert(memberVO);
 
             if (updated == 1){
+
+                List<String> hobbies = memberVO.getHobbies();
+
+                for (String hobby : hobbies) {
+                    memberVO.setHobby(hobby);
+                    memberService.insertHobby(memberVO);
+                }
+
                 map.put("status", 0);
                 map.put("statusMessage","회원가입이 완료되었습니다.");
             } else {

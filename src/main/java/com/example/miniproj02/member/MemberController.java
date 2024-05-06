@@ -1,17 +1,22 @@
 package com.example.miniproj02.member;
 
+import com.example.miniproj02.entity.HobbyVO;
 import com.example.miniproj02.entity.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -22,13 +27,16 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+
     @RequestMapping("myPage")
     public String myPage() {
         return "member/myPage";
     }
 
     @RequestMapping("updateForm")
-    public String updateForm() {
+    public String updateForm(Model model) {
+        List<HobbyVO> hobbyList = memberService.getHobby();
+        model.addAttribute("hobbyList", hobbyList);
         return "member/updateForm";
     }
 
@@ -58,6 +66,21 @@ public class MemberController {
         if (updated == 1) {
             Authentication authentication = new UsernamePasswordAuthenticationToken(memberVO, null, null);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+
+            System.out.println("memberVO = " + memberVO);
+            memberService.deleteHobby(memberVO);
+
+            List<String> hobbies = memberVO.getHobbies();
+
+            for (String hobby : hobbies) {
+                memberVO.setHobby(hobby);
+                memberService.insertHobby(memberVO);
+            }
+
+            UserDetails updatedUserDetails = memberService.loadUserByUsername(memberVO.getUsername());
+            Authentication updatedAuthentication = new UsernamePasswordAuthenticationToken(updatedUserDetails, authentication.getCredentials(), updatedUserDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(updatedAuthentication);
 
             map.put("status", 0);
             map.put("statusMessage", "수정되었습니다.");

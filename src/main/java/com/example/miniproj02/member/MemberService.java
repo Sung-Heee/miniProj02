@@ -1,5 +1,6 @@
 package com.example.miniproj02.member;
 
+import com.example.miniproj02.entity.HobbyVO;
 import com.example.miniproj02.entity.MemberVO;
 import com.example.miniproj02.page.PageRequestVO;
 import com.example.miniproj02.page.PageResponseVO;
@@ -95,5 +96,17 @@ public class MemberService implements UserDetailsService {
 
     public boolean delete(String member_id) {
         return memberMapper.withdraw(member_id);
+    }
+
+    public List<HobbyVO> getHobby() {
+        return memberMapper.getHobby();
+    }
+
+    public int insertHobby(MemberVO memberVO) {
+        return memberMapper.insertHobby(memberVO);
+    }
+
+    public void deleteHobby(MemberVO memberVO) {
+        memberMapper.deleteHobby(memberVO);
     }
 }

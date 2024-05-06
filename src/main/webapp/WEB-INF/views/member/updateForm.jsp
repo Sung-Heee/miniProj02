@@ -71,18 +71,18 @@
           <div class="mypage-area">
             <div class="mypage-title-area">취미</div>
             <div class="mypage-content-area">
-<%--              <c:forEach var="hobby" items="${hobbyList}">--%>
-<%--                <div class="input-checkbox">--%>
-<%--                  <input type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}" <c:if test="${loginVO.hobbies.contains(hobby.hobbyName)}">checked</c:if>>--%>
-<%--                  <label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>--%>
-<%--                </div>--%>
-<%--              </c:forEach>--%>
+              <c:forEach var="hobby" items="${hobbyList}">
+                <div class="input-checkbox">
+                  <input type="checkbox" id="hobby${hobby.hobby_id}" name="hobbies" value="${hobby.hobby_name}" <c:if test="${principal.hobbyList.contains(hobby.hobby_name)}">checked</c:if>>
+                  <label for="hobby${hobby.hobby_id}">${hobby.hobby_name}</label>
+                </div>
+              </c:forEach>
             </div>
           </div>
           <div class="mypage-area">
             <div class="mypage-title-area">가입일</div>
             <div class="mypage-content-area"><fmt:formatDate value="${principal.member_reg_date}" pattern="yyyy.MM.dd" /></div>
-            <input type="hidden" name="member_reg_date" value="${principal.member_reg_date}">
+            <input type="hidden" name="reg_date" value="${principal.member_reg_date}">
           </div>
         </div>
       </div>

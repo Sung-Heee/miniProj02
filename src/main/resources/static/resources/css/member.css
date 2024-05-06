@@ -1,12 +1,12 @@
 @import "reset.css";
 
 header {
-    height: 70px;
+    height: 60px;
     margin: 20px;
     display: flex;
     align-items: center;
     background: #5F95FF;
-    font-size: 25px;
+    font-size: 22px;
     border-radius: 50px;
 }
 
@@ -43,9 +43,46 @@ header {
 .admin-top-menu-container {
     display: flex;
     justify-content: space-between;
-    background-color: antiquewhite;
-    height: 200px;
     align-items: center;
+}
+
+.admin-search-container {
+    padding: 0 0 0 5px;
+    border: 1px solid #b4b4b4;
+    border-radius: 50px;
+}
+
+.admin-search-input, .admin-search-phone-input {
+    padding: 5px;
+    width: 350px;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+}
+
+.admin-search-input {
+    border-right: 2px solid #EAEAEA;
+}
+
+.admin-search-phone-input {
+    margin-right: 16px;
+}
+
+.admin-search-input:focus, .admin-search-phone-input:focus {
+    outline: none;
+}
+
+.admin-search-submit {
+    font-size: 18px;
+    border: none;
+    padding: 10px 10px;
+    background-color: transparent;
+    cursor: pointer;
+    color: #8b8b8b;
+}
+
+.admin-search-submit:hover {
+    color: #5F95FF;
 }
 
 .admin-lock-btn, .admin-unlock-btn, .admin-delete-btn {
@@ -88,7 +125,6 @@ th, td {
 
 th {
     background-color: #D8E5FF;
-    font-weight: bold;
 }
 
 tr:hover {

@@ -53,7 +53,7 @@
 <%--            </div>--%>
             <div class="insertForm-pwd-container">
                 <div class="insertForm-pwd">Password</div>
-                <input class="insertForm-pwd-input" type="password" name="board_pwd" placeholder="비밀번호를 입력해주세요.">
+                <input class="insertForm-pwd-input" type="password" id="password" name="board_pwd" placeholder="비밀번호를 입력해주세요.">
             </div>
             <div class="insertForm-btn-container">
                 <input type="submit" value="등록" class="insertForm-btn"/>
@@ -101,16 +101,25 @@ ClassicEditor.create(document.querySelector('#board_content'), {
 
 insertForm.addEventListener("submit", e => {
     e.preventDefault();
+    const password = document.getElementById("password");
 
-    myFileFetch("insert", "insertForm", json => {
-        if (json.status === 0) {
-            console.log(board_content + "확인");
-            alert(json.statusMessage);
-            location = "/board/list";
-        } else {
-            alert(json.statusMessage);
-        }
-    });
+    if (password.value !== "") {
+        myFileFetch("insert", "insertForm", json => {
+            if (json.status === 0) {
+                console.log(board_content + "확인");
+                alert(json.statusMessage);
+                location = "/board/list";
+            } else {
+                alert(json.statusMessage);
+            }
+        });
+    } else {
+        alert("설정할 비밀번호를 입력해주세요.");
+    }
+
+
+
+
 });
 </script>
 </body>

@@ -100,3 +100,9 @@
   color : #5F95FF;
   text-decoration: underline;
 }
+
+.login-password-find {
+  color : #5F95FF;
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -30,7 +30,7 @@
                     </div>
                     <div class="login-autologin-container">
                         <div class="login-autologin">
-                            <label for="autologin">자동로그인</label> <input type="checkbox" id="autologin" name="autologin" value="Y">
+                            <a href="<c:url value='/login/findPwd'/>" class="login-password-find">비밀번호 찾기</a>
                         </div>
                     </div>
 

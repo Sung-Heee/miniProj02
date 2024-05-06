@@ -21,9 +21,12 @@
 <!--    로그인 성공시 데이터 가져오기-->
     <select id="login" resultType="MemberVO">
         select
-            *
-        from tb_member
+            M.*, GROUP_CONCAT(H.hobby_name SEPARATOR ', ') AS hobbyList
+        FROM TB_MEMBER M
+                 LEFT JOIN TB_MEMBER_HOBBY MH ON M.member_id = MH.member_id
+                 LEFT JOIN TB_HOBBY H ON MH.hobby_id = H.hobby_id
         where member_email = #{member_email}
+        GROUP BY M.member_id
     </select>
 
 <!--    로그인 성공시 마지막 로그인 시간 업데이트-->
@@ -61,7 +64,7 @@
     </update>
 
 <!--    회원가입-->
-    <insert id="insert">
+    <insert id="insert" keyProperty="member_id" useGeneratedKeys="true">
         INSERT INTO tb_member (
             member_email,
             member_pwd,
@@ -143,4 +146,21 @@
         set member_account_locked = 'N'
         where member_id = #{member_id}
     </update>
+
+    <select id="getHobby" resultType="HobbyVO">
+        select
+            *
+        from tb_hobby
+    </select>
+
+    <insert id="insertHobby" >
+        INSERT INTO tb_member_hobby (member_id, hobby_id)
+        VALUES (#{member_id}, (SELECT hobby_id FROM tb_hobby WHERE hobby_name = #{hobby}))
+    </insert>
+
+    <delete id="deleteHobby">
+        delete from tb_member_hobby
+        where member_id = #{member_id}
+    </delete>
+
 </mapper>

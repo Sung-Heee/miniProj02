@@ -79,15 +79,13 @@
                     <input class="input-radio" type="radio" id="male" name="member_gender" value="남자" required> <label for="male">남자</label>
                 </div>
 
-<%--                <div class="member-input-div">--%>
-<%--                    <div class="member-label">취미</div>--%>
-<%--                    <c:forEach var="hobby" items="${hobbyList}">--%>
-
-<%--                        <input class="input-checkbox" type="checkbox" id="hobby${hobby.hobbyId}" name="hobbies" value="${hobby.hobbyName}">--%>
-<%--                        <label for="hobby${hobby.hobbyId}">${hobby.hobbyName}</label>--%>
-
-<%--                    </c:forEach>--%>
-<%--                </div>--%>
+                <div class="member-input-div">
+                    <div class="member-label">취미</div>
+                    <c:forEach var="hobby" items="${hobbyList}">
+                        <input class="input-checkbox" type="checkbox" id="hobby${hobby.hobby_id}" name="hobbies" value="${hobby.hobby_name}">
+                        <label for="hobby${hobby.hobby_id}">${hobby.hobby_name}</label>
+                    </c:forEach>
+                </div>
             </div>
 
             <input type="submit" value="회원가입" class="member-insertForm-btn">

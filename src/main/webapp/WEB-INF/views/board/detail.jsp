@@ -130,7 +130,6 @@ function jsUpdate() {
         });
     } else {
         alert("설정한 비밀번호를 입력해주세요.");
-        password.style.border = '2px solid red';
     }
 }
 

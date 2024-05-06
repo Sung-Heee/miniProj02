@@ -59,7 +59,7 @@
             <div class="mypage-content">
                 <div class="mypage-area">
                     <div class="mypage-title-area">취미</div>
-                    <div class="mypage-content-area"></div>
+                    <div class="mypage-content-area">${principal.hobbyList}</div>
                 </div>
                 <div class="mypage-area">
                     <div class="mypage-title-area">가입일</div>

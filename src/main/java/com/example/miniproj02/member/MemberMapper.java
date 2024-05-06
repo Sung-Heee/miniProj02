@@ -1,5 +1,6 @@
 package com.example.miniproj02.member;
 
+import com.example.miniproj02.entity.HobbyVO;
 import com.example.miniproj02.entity.MemberVO;
 import com.example.miniproj02.page.PageRequestVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -43,4 +44,10 @@ public interface MemberMapper {
     boolean unlock(String memberId);
 
     boolean withdraw(String memberId);
+
+    List<HobbyVO> getHobby();
+
+    int insertHobby(MemberVO memberVO);
+
+    void deleteHobby(MemberVO memberVO);
 }

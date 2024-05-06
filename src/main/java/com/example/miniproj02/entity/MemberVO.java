@@ -36,6 +36,12 @@ public class MemberVO implements UserDetails {
 
     private List<String> check_list;
 
+    private List<String> hobbies;
+    private String hobbyList;
+    private String hobby;
+
+    private String reg_date;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collections = new ArrayList<GrantedAuthority>();

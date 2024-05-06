@@ -70,6 +70,7 @@
 
             <div class="list">
                 <div class="list-top-content">
+                    <div class="new-area"></div>
                     <div class="no-area">No.</div>
                     <div class="title-area">제목</div>
                     <div class="writer-area">작성자</div>
@@ -78,16 +79,40 @@
 <%--                    <div class="admin-delete-btn"></div>--%>
                 </div>
                 <c:forEach var="board" items="${pageResponseVO.list}">
-                    <div class="list-content">
-                        <div class="no-area">${board.board_id}</div>
-                        <div class="title-area"><a href="detail?board_id=${board.board_id}" class="title-a">${board.board_title}</a></div>
-                        <div class="writer-area">${board.board_writer}</div>
-                        <div class="view-area">${board.view_count}</div>
-                        <div class="date-area"><fmt:formatDate value="${board.board_date}" pattern="yyyy.MM.dd" /></div>
+                    <c:set var="currentTime" value="${System.currentTimeMillis()}"/>
+                    <c:set var="twentyFourHoursAgo" value="${currentTime - (24 * 60 * 60 * 1000)}"/>
+                    <c:choose>
+                        <c:when test="${board.board_date.time > twentyFourHoursAgo}">
+                            <div class="list-content">
+                                <span class="new-area">new!</span>
+                                <div class="no-area">${board.board_id}</div>
+                                <div class="title-area"><a href="detail?board_id=${board.board_id}" class="title-a">${board.board_title}</a></div>
+                                <div class="writer-area">${board.board_writer}</div>
+                                <div class="view-area">${board.view_count}</div>
+                                <div class="date-area">
+                                    <fmt:formatDate value="${board.board_date}" pattern="yyyy.MM.dd HH:mm" />
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="list-content">
+                                <span class="new-area"></span>
+                                <div class="no-area">${board.board_id}</div>
+                                <div class="title-area"><a href="detail?board_id=${board.board_id}" class="title-a">${board.board_title}</a></div>
+                                <div class="writer-area">${board.board_writer}</div>
+                                <div class="view-area">${board.view_count}</div>
+                                <div class="date-area">
+                                    <fmt:formatDate value="${board.board_date}" pattern="yyyy.MM.dd HH:mm" />
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
+
 <%--                        <c:if test="${loginVO.user_id eq 'admin'}">--%>
 <%--                            <div class="admin-delete-btn"><a href="javascript:jsDelete(${board.bno})">삭제</a></div>--%>
 <%--                        </c:if>--%>
-                    </div>
+
                 </c:forEach>
             </div>
 

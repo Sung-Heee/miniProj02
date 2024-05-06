@@ -23,4 +23,6 @@ public interface BoardMapper {
     int incViewCount(BoardVO boardVO);
 
     boolean boardDelete(String boardId);
+
+    List<BoardVO> getBoardList();
 }

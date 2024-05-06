@@ -32,28 +32,22 @@ public class AdminController {
     @Autowired
     CodeService codeService;
 
+    @Autowired
+    MemberMapper memberMapper;
+
     @RequestMapping("member")
-    public String adminMain(@Valid PageRequestVO pageRequestVO, BindingResult bindingResult, Model model) throws ServletException, IOException {
-
-        if (bindingResult.hasErrors()) {
-            pageRequestVO = pageRequestVO.builder().build();
-        }
-
-        model.addAttribute("pageResponseVO", memberService.getList(pageRequestVO));
-        model.addAttribute("sizes", codeService.getList());
+    public String adminMain(Model model) throws ServletException, IOException {
+        List<MemberVO> memberList = memberService.getMemberList();
+        model.addAttribute("memberList", memberList);
 
         return "admin/member";
     }
 
     @RequestMapping("board")
-    public String list(@Valid PageRequestVO pageRequestVO, BindingResult bindingResult, Model model) throws ServletException, IOException {
+    public String list(Model model) throws ServletException, IOException {
+        List<BoardVO> boardList = boardService.getBoardList();
 
-        if (bindingResult.hasErrors()) {
-            pageRequestVO = pageRequestVO.builder().build();
-        }
-
-        model.addAttribute("pageResponseVO", boardService.getList(pageRequestVO));
-        model.addAttribute("sizes", codeService.getList());
+        model.addAttribute("boardList", boardList);
 
         return "admin/board";
     }
@@ -67,8 +61,8 @@ public class AdminController {
 
         boolean success = true;
 
-        for (String member_id : checkList) {
-            boolean result = memberService.lock(member_id);
+        for (String member_email : checkList) {
+            boolean result = memberService.lock(member_email);
             if (!result) {
                 success = false;
                 break;
@@ -94,8 +88,9 @@ public class AdminController {
 
         boolean success = true;
 
-        for (String member_id : checkList) {
-            boolean result = memberService.unlock(member_id);
+        for (String member_email : checkList) {
+            boolean result = memberService.unlock(member_email);
+            memberMapper.loginCountClear(member_email);
             if (!result) {
                 success = false;
                 break;
@@ -121,8 +116,8 @@ public class AdminController {
 
         boolean success = true;
 
-        for (String member_id : checkList) {
-            boolean result = memberService.delete(member_id);
+        for (String member_email : checkList) {
+            boolean result = memberService.delete(member_email);
             if (!result) {
                 success = false;
                 break;

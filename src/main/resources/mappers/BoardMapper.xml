@@ -77,4 +77,10 @@
             view_count = view_count + 1
         where board_id = #{board_id}
     </update>
+
+    <select id="getBoardList" resultType="BoardVO">
+        select
+            b.*,  m.member_nickname board_writer
+        from tb_board b inner join tb_member m on b.member_email = m.member_email
+    </select>
 </mapper>

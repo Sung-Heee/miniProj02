@@ -39,15 +39,17 @@ public interface MemberMapper {
 
     int getTotalCount(PageRequestVO pageRequestVO);
 
-    boolean lock(String memberId);
+    boolean lock(String member_email);
 
-    boolean unlock(String memberId);
+    boolean unlock(String member_email);
 
-    boolean withdraw(String memberId);
+    boolean delete(String member_email);
 
     List<HobbyVO> getHobby();
 
     int insertHobby(MemberVO memberVO);
 
     void deleteHobby(MemberVO memberVO);
+
+    List<MemberVO> getMemberList();
 }

@@ -47,9 +47,6 @@
             <when test="member_login_count >= 2">
                 , member_account_locked = 'Y'
             </when>
-            <otherwise>
-                , member_account_locked = 'N'
-            </otherwise>
         </choose>
         where member_email = #{member_email}
     </update>
@@ -102,6 +99,11 @@
         where member_id = #{member_id}
     </delete>
 
+    <delete id="delete">
+        delete from tb_member
+        where member_email = #{member_email}
+    </delete>
+
     <select id="existUser" resultType="MemberVO">
         select *
         from tb_member
@@ -112,6 +114,12 @@
         select *
         from tb_member
         where member_nickname = #{member_nickname}
+    </select>
+
+    <select id="getMemberList" resultType="MemberVO">
+        select
+            *
+        from tb_member
     </select>
 
     <select id="getRole" resultType="String">
@@ -138,13 +146,13 @@
     <update id="lock">
         update tb_member
         set member_account_locked = 'Y'
-        where member_id = #{member_id}
+        where member_email = #{member_email}
     </update>
 
     <update id="unlock">
         update tb_member
         set member_account_locked = 'N'
-        where member_id = #{member_id}
+        where member_email = #{member_email}
     </update>
 
     <select id="getHobby" resultType="HobbyVO">

@@ -59,7 +59,7 @@
                 <th>계정 잠김 여부</th>
             </tr>
             </thead>
-            <c:forEach var="member" items="${pageResponseVO.list}">
+            <c:forEach var="member" items="${memberList}">
             <tbody>
             <tr>
                 <td class="checkbox-col"><input type="checkbox"></td>
@@ -89,8 +89,8 @@
 
         const checkbox = document.querySelectorAll('input[type="checkbox"]:checked');
         checkbox.forEach(function (check) {
-            const member_id = check.closest('tr').querySelector('td:nth-child(2)').innerText;
-            checkItems.push(member_id);
+            const member_email = check.closest('tr').querySelector('td:nth-child(3)').innerText;
+            checkItems.push(member_email);
         });
         // console.log(checkItems);
 
@@ -113,8 +113,8 @@
 
         const checkbox = document.querySelectorAll('input[type="checkbox"]:checked');
         checkbox.forEach(function (check) {
-            const member_id = check.closest('tr').querySelector('td:nth-child(2)').innerText;
-            checkItems.push(member_id);
+            const member_email = check.closest('tr').querySelector('td:nth-child(3)').innerText;
+            checkItems.push(member_email);
         });
 
         if (checkItems.length < 1) {
@@ -136,8 +136,8 @@
 
         const checkbox = document.querySelectorAll('input[type="checkbox"]:checked');
         checkbox.forEach(function (check) {
-            const member_id = check.closest('tr').querySelector('td:nth-child(2)').innerText;
-            checkItems.push(member_id);
+            const member_email = check.closest('tr').querySelector('td:nth-child(3)').innerText;
+            checkItems.push(member_email);
         });
 
         if (checkItems.length < 1) {

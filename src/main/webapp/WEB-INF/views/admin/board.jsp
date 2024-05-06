@@ -50,7 +50,7 @@
                 <th>조회수</th>
             </tr>
             </thead>
-            <c:forEach var="board" items="${pageResponseVO.list}">
+            <c:forEach var="board" items="${boardList}">
                 <tbody>
                 <tr>
                     <td class="checkbox-col"><input type="checkbox"></td>

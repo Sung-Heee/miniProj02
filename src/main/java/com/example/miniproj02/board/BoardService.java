@@ -259,4 +259,8 @@ public class BoardService {
     public boolean boardDelete(String board_id) {
         return boardMapper.boardDelete(board_id);
     }
+
+    public List<BoardVO> getBoardList() {
+        return boardMapper.getBoardList();
+    }
 }

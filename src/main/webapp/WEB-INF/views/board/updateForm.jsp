@@ -91,8 +91,6 @@
 
                 <div class="detail-btn-container">
                     <a href="javascript:jsUpdate()" class="modify-btn">수정</a>
-                    <a href="javascript:jsTest()" class="modify-btn">값 테스트</a>
-
                 </div>
             </div>
         </div>

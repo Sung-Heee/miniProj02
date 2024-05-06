@@ -86,16 +86,16 @@ public class MemberService implements UserDetailsService {
         return pageResponseVO;
     }
 
-    public boolean lock(String member_id) {
-        return memberMapper.lock(member_id);
+    public boolean lock(String member_email) {
+        return memberMapper.lock(member_email);
     }
 
-    public boolean unlock(String member_id) {
-        return memberMapper.unlock(member_id);
+    public boolean unlock(String member_email) {
+        return memberMapper.unlock(member_email);
     }
 
-    public boolean delete(String member_id) {
-        return memberMapper.withdraw(member_id);
+    public boolean delete(String member_email) {
+        return memberMapper.delete(member_email);
     }
 
     public List<HobbyVO> getHobby() {
@@ -109,4 +109,9 @@ public class MemberService implements UserDetailsService {
     public void deleteHobby(MemberVO memberVO) {
         memberMapper.deleteHobby(memberVO);
     }
+
+    public List<MemberVO> getMemberList() {
+        return memberMapper.getMemberList();
+    }
+
 }

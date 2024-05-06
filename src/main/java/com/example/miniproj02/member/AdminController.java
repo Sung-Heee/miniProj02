@@ -104,7 +104,7 @@ public class AdminController {
 
         if (success) {
             map.put("status", 0);
-            map.put("statusMessage", "계정 잠금이 해제 되었습니다.");
+            map.put("statusMessage", "계정제 잠금이 해제 되었습니다.");
         } else {
             map.put("status", -1);
             map.put("statusMessage", "계정 잠금 해제에 실패하였습니다.");

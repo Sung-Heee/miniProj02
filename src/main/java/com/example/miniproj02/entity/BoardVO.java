@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +23,8 @@ public class BoardVO {
     private String view_count;
     private String board_pwd;
     private String board_writer;
+
+    private List<String> check_list;
 
     // 수정된 내용
     private String board_modify_content;

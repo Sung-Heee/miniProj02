@@ -255,4 +255,8 @@ public class BoardService {
     public BoardImageFileVO getBoardImageFile(String board_image_file_id) {
         return boardImageFileMapper.findById(board_image_file_id);
     }
+
+    public boolean boardDelete(String board_id) {
+        return boardMapper.boardDelete(board_id);
+    }
 }

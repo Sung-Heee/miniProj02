@@ -66,6 +66,11 @@
         where board_id = #{board_id}
     </delete>
 
+    <delete id="boardDelete">
+        delete from tb_board
+        where board_id = #{board_id}
+    </delete>
+
     <!-- 조회수 -->
     <update id="incViewCount" >
         update tb_board set

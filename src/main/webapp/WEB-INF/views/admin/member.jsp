@@ -28,18 +28,12 @@
                 <sec:csrfInput/>
 
                 <input type="hidden" id="action" name="action" value="member">
-                <div>
-                    <input type="text" id="searchKey" name="searchKey" value="${param.searchKey}" placeholder="이메일을 입력하세요.">
-                </div>
-                <div>
-                    <input type="text" id="searchName" name="searchName" value="${param.searchName}" placeholder="이름을 입력하세요.">
-                </div>
-                <div>
-                    <input type="text" id="searchPhone" name="searchPhone" value="${param.searchPhone}" placeholder="전화번호를 입력하세요.">
-                </div>
-                <input type="submit" value="검색">
+                <input type="text" class="admin-search-input" id="searchKey" name="searchKey" value="${param.searchKey}" placeholder="이메일을 입력하세요.">
+                <input type="text" class="admin-search-input" id="searchName" name="searchName" value="${param.searchName}" placeholder="이름을 입력하세요.">
+                <input type="text" class="admin-search-phone-input" id="searchPhone" name="searchPhone" value="${param.searchPhone}" placeholder="전화번호를 입력하세요.">
+                <input type="submit" value="검색" class="admin-search-submit">
             </form>
-            <div>계정잠금여부 select</div>
+<%--            <div>계정잠금여부 select</div>--%>
         </div>
         <div>
             <a href="javascript:jsLock()" class="admin-lock-btn">Account Lock</a>
@@ -54,15 +48,15 @@
             <tr>
                 <th class="checkbox-col"></th>
                 <th>No.</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>NickName</th>
-                <th>Gender</th>
-                <th>Phone</th>
-                <th>Role</th>
-                <th>Register Date</th>
-                <th>Last Login Date</th>
-                <th>Account Lock</th>
+                <th>이메일</th>
+                <th>이름</th>
+                <th>닉네임</th>
+                <th>성별</th>
+                <th>핸드폰</th>
+                <th>권한</th>
+                <th>가입일자</th>
+                <th>마지막 로그인</th>
+                <th>계정 잠김 여부</th>
             </tr>
             </thead>
             <c:forEach var="member" items="${pageResponseVO.list}">

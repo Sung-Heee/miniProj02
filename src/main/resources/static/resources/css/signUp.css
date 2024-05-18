@@ -20,7 +20,7 @@
 .member-top-container {
     height : 10%;
     font-size: 28px;
-    color :#5F95FF;
+    color :#7DB249;
 }
 
 .member-input-container {
@@ -71,9 +71,9 @@ label {
 }
 .member-duplicatedId > input {
     font-size : 17px;
-    color: #5F95FF;
+    color: #7DB249;
     padding : 10px 20px;
-    border : 1px solid #5F95FF;
+    border : 1px solid #7DB249;
     background-color: white;
     border-radius: 50px;
     cursor: pointer;
@@ -88,7 +88,7 @@ label {
     border-radius: 50px;
     border: none;
     cursor: pointer;
-    background-color: #5F95FF;
+    background-color: #7DB249;
     color: white;
     font-size: 20px;
     padding: 13px 10px;
@@ -97,5 +97,5 @@ label {
 }
 
 .member-insertForm-btn:hover {
-    background-color: #4681F3;
+    background-color: #568A35;
 }

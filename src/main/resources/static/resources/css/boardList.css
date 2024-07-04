@@ -25,7 +25,7 @@
 
 .insert-container {
     border-radius: 30px;
-    background-color: #5F95FF;
+    background-color: #7DB249;
     padding : 15px 20px;
     font-size : 18px;
     width: 150px;
@@ -34,7 +34,7 @@
 }
 
 .insert-container:hover {
-    background-color: #4681F3;
+    background-color: #568A35;
 }
 
 .insert-btn {
@@ -92,7 +92,7 @@ select {
 }
 
 .searchbar-a:hover {
-    color : #5F95FF;
+    color : #7DB249;
 }
 
 .list {
@@ -121,7 +121,7 @@ select {
 .new-area {
     width: 3%;
     font-size: 12px;
-    color: #5F95FF;
+    color: #7DB249;
     display: flex;
     justify-content: flex-end;
 }
@@ -157,7 +157,7 @@ select {
 }
 
 .admin-delete-btn > a {
-    color : #5F95FF;
+    color : #7DB249;
 }
 
 .title-a {
@@ -165,7 +165,7 @@ select {
 }
 
 .title-a:hover {
-    color : #5F95FF;
+    color : #7DB249;
 }
 
 /*페이지네이션*/
@@ -186,14 +186,14 @@ select {
     padding: 6px 12px;
     line-height: 1.42857143;
     text-decoration: none;
-    color: #5F95FF;
+    color: #7DB249;
     background-color: #fff;
     border: 1px solid #dee2e6;
     margin-left: -1px;
 }
 
 .page-link:hover {
-    color: #4681F3;
+    color: #568A35;
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
@@ -219,8 +219,8 @@ select {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #5F95FF;
-    border-color: #5F95FF;
+    background-color: #7DB249;
+    border-color: #7DB249;
 }
 
 .page-link[data-num] {

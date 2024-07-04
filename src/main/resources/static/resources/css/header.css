@@ -1,61 +1,138 @@
 @import "reset.css";
 
 /* 헤더 스타일 */
+/*.header-container {*/
+/*    height: 100px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 20px 30px;*/
+/*}*/
+
+/*.logo-container {*/
+/*    flex: 1;*/
+/*}*/
+
+/*.logo {*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*    font-size: 25px;*/
+/*}*/
+
+/*.menu-container {*/
+/*    flex: 4;*/
+/*    display: flex;*/
+/*    justify-content: flex-end; !* 오른쪽으로 정렬 *!*/
+/*}*/
+
+/*.menu-btn {*/
+/*    text-decoration: none;*/
+/*    color: #6E6E6E;*/
+/*    font-weight: 500;*/
+/*    padding: 10px 20px;*/
+/*    margin-left: 10px;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*.menu-btn:hover{*/
+/*    color: #5F95FF;*/
+/*}*/
+
+/*.sign-container {*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    justify-content: flex-end; !* 오른쪽으로 정렬 *!*/
+/*    align-items: center;*/
+/*}*/
+
+/*.square-btn {*/
+/*    text-decoration: none;*/
+/*    background-color: #FFF;*/
+/*    padding: 10px 40px;*/
+/*    margin-left: 20px;*/
+/*    font-size: 20px;*/
+/*    color: #5F95FF;*/
+/*    border: 1px solid #5F95FF;*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*.square-btn:hover {*/
+/*    background-color: #F8F8F8;*/
+/*}*/
+
 .header-container {
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 10px 20px;
 }
 
-.logo-container {
-    flex: 1;
+.left-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container  {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    margin-right: 20px; /* 로고와 메뉴 사이 간격 조정 */
 }
 
 .logo {
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 25px;
+    display: flex;
 }
 
+.logo > img {
+    width: 130px;
+}
 .menu-container {
-    flex: 4;
     display: flex;
-    justify-content: flex-end; /* 오른쪽으로 정렬 */
+    gap: 15px;
 }
 
 .menu-btn {
     text-decoration: none;
-    color: #6E6E6E;
-    font-weight: 500;
-    padding: 10px 20px;
-    margin-left: 10px;
-    font-size: 20px;
+    color: #333;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: color 0.2s;
 }
 
-.menu-btn:hover{
-    color: #5F95FF;
+.menu-btn:hover {
+    color: #7DB249;
 }
 
 .sign-container {
-    flex: 1;
     display: flex;
-    justify-content: flex-end; /* 오른쪽으로 정렬 */
     align-items: center;
+    gap: 10px;
 }
 
 .square-btn {
     text-decoration: none;
+    color: #7DB249;
     background-color: #FFF;
-    padding: 10px 40px;
+    padding: 8px 30px;
+    transition: background-color 0.3s;
+    border: 1px solid #7DB249;
+    font-size: 19px;
     margin-left: 20px;
-    font-size: 20px;
-    color: #5F95FF;
-    border: 1px solid #5F95FF;
-    font-weight: 500;
 }
 
 .square-btn:hover {
     background-color: #F8F8F8;
 }
+
+/*.square-btn {*/
+/*    text-decoration: none;*/
+/*    background-color: #FFF;*/
+/*    padding: 10px 40px;*/
+/*    margin-left: 20px;*/
+/*    font-size: 20px;*/
+/*    color: #5F95FF;*/
+/*    border: 1px solid #5F95FF;*/
+/*    font-weight: 500;*/
+/*}*/

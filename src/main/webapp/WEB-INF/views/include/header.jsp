@@ -10,21 +10,18 @@
         <sec:authentication property="principal" var="principal"/>
     </sec:authorize>
 
-
     <div class="header-container">
-
-        <div class="logo-container">
-            <a href="<c:url value='/'/>" class="logo">logo</a>
+        <div class="left-container">
+            <div class="logo-container">
+                <a href="<c:url value='/'/>" class="logo"><img src="/resources/image/logo.png"></a>
+            </div>
+            <div class="menu-container">
+                <a href="/" class="menu-btn">Company</a>
+                <a href="<c:url value='/board/list'/>" class="menu-btn">Board</a>
+                <a href="<c:url value='/member/myPage'/>" class="menu-btn">Mypage</a>
+            </div>
         </div>
-
-        <div class="menu-container">
-            <a href="/" class="menu-btn">Company</a>
-            <a href="<c:url value='/board/list'/>" class="menu-btn">Board</a>
-            <a href="<c:url value='/member/myPage'/>" class="menu-btn">Mypage</a>
-        </div>
-
         <div class="sign-container">
-            <%-- 세션 스코프에 있는 loginVO 변수가 비어있는지 확인하여 로그인 여부를 판단. --%>
             <c:choose>
                 <c:when test="${empty principal}">
                     <!-- 로그인 되어 있지 않은 경우 -->
@@ -39,5 +36,3 @@
         </div>
     </div>
 </header>
-
-</script>

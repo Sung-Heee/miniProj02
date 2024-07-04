@@ -15,7 +15,7 @@
 }
 
 .insertForm-top-container {
-    color : 	#5F95FF;
+    color : 	#7DB249;
     font-size: 28px;
     display: flex;
     justify-content: center;
@@ -35,7 +35,7 @@
 
 .insertForm-title, .insertForm-pwd, .insertForm-file {
     margin: 5px 0;
-    color: #5F95FF;
+    color: #7DB249;
     font-size: 16px;
 }
 
@@ -104,12 +104,12 @@
     padding: 10px 0;
     border: none;
     color : white;
-    background-color: #5F95FF;
+    background-color: #7DB249;
     cursor: pointer;
 }
 
 .insertForm-btn:hover {
-    background-color: #4681F3;
+    background-color: #568A35;
 }
 
 .file-input {

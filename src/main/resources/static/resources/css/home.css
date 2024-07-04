@@ -10,7 +10,7 @@
 .main-content h1 {
     font-size: 50px;
     margin-bottom: 10px;
-    color : #5F95FF;
+    color : #7DB249;
 }
 .main-content p {
     font-size: 20px;
@@ -29,12 +29,12 @@
 .main-content .btn {
     display: inline-block;
     padding: 15px 30px;
-    background-color:  #5F95FF;
+    background-color:  #7DB249;
     color: #fff;
     text-decoration: none;
     transition: background-color 0.3s ease;
     font-size: 20px;
 }
 .main-content .btn:hover {
-    background-color: #4681F3;
+    background-color: #568A35;
 }

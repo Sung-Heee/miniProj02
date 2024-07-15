@@ -1,10 +1,11 @@
-package com.example.miniproj02.board;
+package com.example.miniproj02.board.controller;
 
-import com.example.miniproj02.code.CodeService;
+import com.example.miniproj02.board.service.BoardService;
+import com.example.miniproj02.code.service.CodeService;
 import com.example.miniproj02.entity.BoardFileVO;
 import com.example.miniproj02.entity.BoardImageFileVO;
 import com.example.miniproj02.entity.BoardVO;
-import com.example.miniproj02.page.PageRequestVO;
+import com.example.miniproj02.page.PageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,13 +42,13 @@ public class BoardController {
     // size : 10 ~ 100 이때 만약 -10이라고 주면 pageRequestVO 이걸 가지고 bindingResult 여기서 에러 값 설정이 돼서 다시 정리해줌 (pageRequestVO = PageRequestVO.builder().build();)
     @RequestMapping("list")
     // 값에 문제가 있으면 bindingResult에 에러에 관한 걸 설정
-    public String list(@Valid PageRequestVO pageRequestVO, BindingResult bindingResult, Model model) throws ServletException, IOException {
+    public String list(@Valid PageRequest pageRequest, BindingResult bindingResult, Model model) throws ServletException, IOException {
 
         if (bindingResult.hasErrors()) {
-            pageRequestVO = pageRequestVO.builder().build();
+            pageRequest = pageRequest.builder().build();
         }
 
-        model.addAttribute("pageResponseVO", boardService.getList(pageRequestVO));
+        model.addAttribute("pageResponse", boardService.getList(pageRequest));
         model.addAttribute("sizes", codeService.getList());
 
         return "board/list";
@@ -55,7 +56,6 @@ public class BoardController {
 
     @RequestMapping("insertForm")
     public String insertForm(Model model) {
-        // 게시물 토큰을 생성하여 model에 저장
         model.addAttribute("board_token", boardService.getBoardToken());
         return "board/insertForm";
     }
@@ -108,7 +108,6 @@ public class BoardController {
     @RequestMapping("update")
     @ResponseBody
     public Map<String, Object> update(BoardVO boardVO) {
-        System.out.println("boardVO.getBoard_content() = " + boardVO.getBoard_content());
         Map<String, Object> map = new HashMap<>();
 
         int updated = boardService.update(boardVO);

@@ -1,20 +1,19 @@
-package com.example.miniproj02.member;
+package com.example.miniproj02.member.controller;
 
-import com.example.miniproj02.board.BoardService;
-import com.example.miniproj02.code.CodeService;
+import com.example.miniproj02.board.service.BoardService;
+import com.example.miniproj02.code.service.CodeService;
 import com.example.miniproj02.entity.BoardVO;
 import com.example.miniproj02.entity.MemberVO;
-import com.example.miniproj02.page.PageRequestVO;
+import com.example.miniproj02.member.mapper.MemberMapper;
+import com.example.miniproj02.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;

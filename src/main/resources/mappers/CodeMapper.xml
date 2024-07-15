@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.miniproj02.code.CodeMapper">
+<mapper namespace="com.example.miniproj02.code.mapper.CodeMapper">
 
     <select id="getList" resultType="CodeVO">
         select

@@ -1,10 +1,14 @@
-package com.example.miniproj02.board;
+package com.example.miniproj02.board.service;
 
+import com.example.miniproj02.board.mapper.BoardTokenMapper;
+import com.example.miniproj02.board.mapper.BoardFileMapper;
+import com.example.miniproj02.board.mapper.BoardImageFileMapper;
+import com.example.miniproj02.board.mapper.BoardMapper;
 import com.example.miniproj02.entity.BoardFileVO;
 import com.example.miniproj02.entity.BoardImageFileVO;
 import com.example.miniproj02.entity.BoardVO;
-import com.example.miniproj02.page.PageRequestVO;
-import com.example.miniproj02.page.PageResponseVO;
+import com.example.miniproj02.page.PageRequest;
+import com.example.miniproj02.page.PageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,39 +45,39 @@ public class BoardService {
     // 날짜 서식 생성
     private final SimpleDateFormat date_format = new SimpleDateFormat(File.separator + "MM" + File.separator + "dd");
 
-    public PageResponseVO<BoardVO> getList(PageRequestVO pageRequestVO) {
-        List<BoardVO> list = boardMapper.getList(pageRequestVO);
-        int total = boardMapper.getTotalCount(pageRequestVO);
+    public PageResponse<BoardVO> getList(PageRequest pageRequest) {
+        List<BoardVO> list = boardMapper.getList(pageRequest);
+        int total = boardMapper.getTotalCount(pageRequest);
 
-        PageResponseVO<BoardVO> pageResponseVO = PageResponseVO.<BoardVO>withAll()
+        PageResponse<BoardVO> pageResponse = PageResponse.<BoardVO>withAll()
                 .list(list)
                 .total(total)
-                .size(pageRequestVO.getSize())
-                .pageNo(pageRequestVO.getPageNo())
+                .size(pageRequest.getSize())
+                .pageNo(pageRequest.getPageNo())
                 .build();
 
-        return pageResponseVO;
+        return pageResponse;
     }
 
     public int insert(BoardVO boardVO) {
         String password = bCryptPasswordEncoder.encode(boardVO.getBoard_pwd());
         boardVO.setBoard_pwd(password);
 
-        // 게시물 등록시 게시물의 번호 얻기
-        int result = boardMapper.insert(boardVO);
+        boardMapper.insert(boardVO);
+        int result = 0;
 
         // MultipartFile 객체를 파일에 저장하기
         BoardFileVO boardFileVO = writeFile(boardVO.getFile());
         if (boardFileVO != null) {
-            // 첨부파일에 게시물의 아이디를 설정한다.
+            // 첨부파일에 게시물의 아이디를 설정
             System.out.println("boardVO = " + boardVO);
             boardFileVO.setBoard_id(boardVO.getBoard_id());
 
-            // 파일 정보를 DB에 저장한다.
+            // 파일 정보를 DB에 저장
             result = boardFileMapper.insert(boardFileVO);
         }
 
-        // board_token의 상태를 임시 상태에서 완료 상태로 변경
+        // board_token 임시 상태 -> 완료 상태로 변경
         boardTokenMapper.updateStatusComplete(boardVO.getBoard_token());
 
         String board_content = boardVO.getBoard_content();
@@ -101,7 +105,7 @@ public class BoardService {
             deleteImageList.stream().forEach(boardImageFile -> new File(boardImageFile.getReal_filename()).delete());
 
             //3. 삭제 목록에 있는 이미지를 (DB)삭제 한다
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap<>();
             map.put("list", deleteImageList);
             boardImageFileMapper.deleteBoardImageFiles(map);
         }
@@ -112,7 +116,7 @@ public class BoardService {
         return result;
     }
 
-    // MultipartFile 객체를 파일에 저장한다.
+    // MultipartFile 객체를 파일에 저장
     private BoardFileVO writeFile(MultipartFile file) {
         if (file == null || file.getName() == null)
             return null;
@@ -130,7 +134,7 @@ public class BoardService {
             realPath.mkdirs();
         }
 
-        // 실제 파일명으로 사용할 이름을 생성 ? ?
+        // 실제 파일명으로 사용할 이름을 생성
         String fileNameReal = UUID.randomUUID().toString();
         File realFile = new File(realPath, fileNameReal);
 
@@ -172,13 +176,12 @@ public class BoardService {
     }
 
     public int update(BoardVO boardVO) {
-        System.out.println("내용 수정을 위한 boardVO = " + boardVO);
         BoardFileVO boardFileVO = writeFile(boardVO.getFile());
 
         int result = boardMapper.update(boardVO);
 
         if (boardFileVO != null) {
-            // 첨부파일에 게시물의 아이디를 설정한다.
+            // 첨부파일에 게시물의 아이디를 설정
             boardFileVO.setBoard_id(boardVO.getBoard_id());
 
             System.out.println("들어왔냐 boardFileVO = " + boardFileVO);
@@ -215,19 +218,19 @@ public class BoardService {
 
     public String boardImageFileUpload(String board_token, MultipartFile file) {
         Calendar now = Calendar.getInstance();
-        //저장위치를 오늘의 날짜로 한다
+        // 저장위치를 오늘의 날짜로 한다
         String realFolder = date_format.format(now.getTime());
-        //실제 저장 위치를 생성한다
+        // 실제 저장 위치를 생성한다
         File realPath = new File(CURR_IMAGE_REPO_PATH + realFolder);
-        //오늘 날짜에 대한 폴더가 없으면 생성한다
+        // 오늘 날짜에 대한 폴더가 없으면 생성
         if(!realPath.exists()) {
             realPath.mkdirs();
         }
-        //실제 파일명으로 사용할 이름을 생성한다
+        // 실제 파일명으로 사용할 이름을 생성
         String fileNameReal = UUID.randomUUID().toString();
         File realFile = new File(realPath, fileNameReal);
 
-        //파일을 실제 위치에 저장한다
+        // 파일을 실제 위치에 저장
         try {
             file.transferTo(realFile);
         } catch (Exception e) {
@@ -236,7 +239,7 @@ public class BoardService {
             return null;
         }
 
-        //게시물에 내용에 추가되는 이미지 파일 객체를 생성한다
+        // 게시물에 내용에 추가되는 이미지 파일 객체를 생성
         BoardImageFileVO boardImageFileVO = BoardImageFileVO.builder()
                 .board_token(board_token)
                 .content_type(file.getContentType())
@@ -246,7 +249,7 @@ public class BoardService {
                 .build();
 
         log.info("boardImageFileVO = {}", boardImageFileVO);
-        //게시물에 내용에 추가되는 이미지 파일을 DB에 저장한다
+        // 게시물에 내용에 추가되는 이미지 파일을 DB에 저장
         boardImageFileMapper.insert(boardImageFileVO);
 
         return boardImageFileVO.getBoard_image_file_id();

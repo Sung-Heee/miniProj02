@@ -2,12 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.miniproj02.board.BoardImageFileMapper">
-    <insert id="insert">
-        <selectKey order="AFTER" keyProperty="board_image_file_id" resultType="String">
-            select LAST_INSERT_ID() board_image_file_id
-        </selectKey>
-
+<mapper namespace="com.example.miniproj02.board.mapper.BoardImageFileMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="board_image_file_id">
         insert into tb_board_image_file (
         board_token
         ,original_filename

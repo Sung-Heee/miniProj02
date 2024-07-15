@@ -1,5 +1,6 @@
-package com.example.miniproj02.member;
+package com.example.miniproj02.member.handler;
 
+import com.example.miniproj02.member.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;

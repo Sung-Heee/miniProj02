@@ -1,9 +1,10 @@
-package com.example.miniproj02.member;
+package com.example.miniproj02.member.service;
 
 import com.example.miniproj02.entity.HobbyVO;
 import com.example.miniproj02.entity.MemberVO;
-import com.example.miniproj02.page.PageRequestVO;
-import com.example.miniproj02.page.PageResponseVO;
+import com.example.miniproj02.member.mapper.MemberMapper;
+import com.example.miniproj02.page.PageRequest;
+import com.example.miniproj02.page.PageResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -73,17 +74,17 @@ public class MemberService implements UserDetailsService {
         return memberMapper.existNickName(memberVO);
     }
 
-    public PageResponseVO<MemberVO> getList(PageRequestVO pageRequestVO) {
-        List<MemberVO> list = memberMapper.getList(pageRequestVO);
-        int total = memberMapper.getTotalCount(pageRequestVO);
+    public PageResponse<MemberVO> getList(PageRequest pageRequest) {
+        List<MemberVO> list = memberMapper.getList(pageRequest);
+        int total = memberMapper.getTotalCount(pageRequest);
 
-        PageResponseVO<MemberVO> pageResponseVO = PageResponseVO.<MemberVO>withAll()
+        PageResponse<MemberVO> pageResponse = PageResponse.<MemberVO>withAll()
                 .list(list)
                 .total(total)
-                .size(pageRequestVO.getSize())
-                .pageNo(pageRequestVO.getPageNo())
+                .size(pageRequest.getSize())
+                .pageNo(pageRequest.getPageNo())
                 .build();
-        return pageResponseVO;
+        return pageResponse;
     }
 
     public boolean lock(String member_email) {

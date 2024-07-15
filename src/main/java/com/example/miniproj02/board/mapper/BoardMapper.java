@@ -1,16 +1,15 @@
-package com.example.miniproj02.board;
+package com.example.miniproj02.board.mapper;
 
 import com.example.miniproj02.entity.BoardVO;
-import com.example.miniproj02.entity.MemberVO;
-import com.example.miniproj02.page.PageRequestVO;
+import com.example.miniproj02.page.PageRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    List<BoardVO> getList(PageRequestVO pageRequestVO);
-    int getTotalCount(PageRequestVO pageRequestVO);
+    List<BoardVO> getList(PageRequest pageRequest);
+    int getTotalCount(PageRequest pageRequest);
     BoardVO view(BoardVO boardVO);
     int insert(BoardVO boardVO);
 

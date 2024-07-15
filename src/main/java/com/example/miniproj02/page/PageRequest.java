@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageRequestVO {
+public class PageRequest {
 
     @Builder.Default
     @Min(value = 1)

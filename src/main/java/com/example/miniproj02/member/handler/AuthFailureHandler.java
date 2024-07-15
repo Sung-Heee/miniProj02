@@ -1,4 +1,4 @@
-package com.example.miniproj02.member;
+package com.example.miniproj02.member.handler;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;

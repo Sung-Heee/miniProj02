@@ -1,4 +1,4 @@
-package com.example.miniproj02.board;
+package com.example.miniproj02.board.mapper;
 
 import com.example.miniproj02.entity.BoardImageFileVO;
 import com.example.miniproj02.entity.BoardVO;

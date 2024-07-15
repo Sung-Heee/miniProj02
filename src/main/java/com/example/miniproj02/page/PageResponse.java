@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class PageResponseVO<E> {
+public class PageResponse<E> {
 
     private int pageNo;//페이지번호
     private int size;  //페이지의 건수
@@ -27,7 +27,7 @@ public class PageResponseVO<E> {
     private List<E> list;
 
     @Builder(builderMethodName = "withAll")
-    public PageResponseVO(List<E> list, int total, int pageNo, int size){
+    public PageResponse(List<E> list, int total, int pageNo, int size){
 
         // 데이터 세팅하고
         this.pageNo = pageNo;
@@ -36,13 +36,10 @@ public class PageResponseVO<E> {
         this.total = total;
         this.list = list;
 
-        // 계산!
-        // 여기서 원래 10으로 되어있었는데 size로 변경해줘야함!!!
         this.end =   (int)(Math.ceil(this.pageNo / 10.0 )) * 10;
 
         this.start = this.end - 9;
 
-        // (double)size -> 10.0으로 바꾸는 건가
         int last =  (int)(Math.ceil((total/(double)size)));
 
         this.end =  end > last ? last: end;

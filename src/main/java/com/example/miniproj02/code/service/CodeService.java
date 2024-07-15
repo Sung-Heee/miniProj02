@@ -1,5 +1,6 @@
-package com.example.miniproj02.code;
+package com.example.miniproj02.code.service;
 
+import com.example.miniproj02.code.mapper.CodeMapper;
 import com.example.miniproj02.entity.CodeVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

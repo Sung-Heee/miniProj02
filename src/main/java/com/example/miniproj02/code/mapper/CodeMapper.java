@@ -1,4 +1,4 @@
-package com.example.miniproj02.code;
+package com.example.miniproj02.code.mapper;
 
 import com.example.miniproj02.entity.CodeVO;
 import org.apache.ibatis.annotations.Mapper;

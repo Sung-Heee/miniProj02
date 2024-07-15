@@ -1,7 +1,8 @@
-package com.example.miniproj02.member;
+package com.example.miniproj02.member.controller;
 
 import com.example.miniproj02.entity.HobbyVO;
 import com.example.miniproj02.entity.MemberVO;
+import com.example.miniproj02.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

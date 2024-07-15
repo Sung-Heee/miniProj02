@@ -30,7 +30,7 @@
                     <div class="select-container">
                         <select id="size" name="size" >
                             <c:forEach var="size" items="${sizes}">
-                                <option value="${size.code_id}" ${pageRequestVO.size == size.code_id ? 'selected' : ''} >${size.code_name}</option>
+                                <option value="${size.code_id}" ${pageRequest.size == size.code_id ? 'selected' : ''} >${size.code_name}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="date-area">작성일자</div>
 <%--                    <div class="admin-delete-btn"></div>--%>
                 </div>
-                <c:forEach var="board" items="${pageResponseVO.list}">
+                <c:forEach var="board" items="${pageResponse.list}">
                     <c:set var="currentTime" value="${System.currentTimeMillis()}"/>
                     <c:set var="twentyFourHoursAgo" value="${currentTime - (24 * 60 * 60 * 1000)}"/>
                     <c:choose>
@@ -122,21 +122,21 @@
         <!--  페이지 네비게이션 바 출력  -->
         <div class="float-end">
             <ul class="pagination flex-wrap">
-                <c:if test="${pageResponseVO.prev}">
+                <c:if test="${pageResponse.prev}">
                     <li class="page-item">
-                        <a class="page-link" data-num="${pageResponseVO.start -1}">이전</a>
+                        <a class="page-link" data-num="${pageResponse.start -1}">이전</a>
                     </li>
                 </c:if>
 
-                <c:forEach begin="${pageResponseVO.start}" end="${pageResponseVO.end}" var="num">
-                    <li class="page-item ${pageResponseVO.pageNo == num ? 'active':''} ">
+                <c:forEach begin="${pageResponse.start}" end="${pageResponse.end}" var="num">
+                    <li class="page-item ${pageResponse.pageNo == num ? 'active':''} ">
                         <a class="page-link"  data-num="${num}">${num}</a>
                     </li>
                 </c:forEach>
 
-                <c:if test="${pageResponseVO.next}">
+                <c:if test="${pageResponse.next}">
                     <li class="page-item">
-                        <a class="page-link"  data-num="${pageResponseVO.end + 1}">다음</a>
+                        <a class="page-link"  data-num="${pageResponse.end + 1}">다음</a>
                     </li>
                 </c:if>
             </ul>
